@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nectar_admin/app_administration/categories/app_categories.dart';
+import 'package:nectar_admin/app_administration/users/app_users.dart';
 import 'package:nectar_admin/colors.dart';
 
 import '../main.dart';
@@ -35,8 +36,7 @@ class _homePageState extends State<homePage> {
               children: [
                 InkWell(
                   onTap: () {
-
-                  },
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => appUsers(),));                  },
                   child: Container(
                     height: h*0.2,
                     width: w*0.4,

@@ -1,10 +1,17 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:nectar_admin/app_intro/splash.dart';
+
+import 'firebase_options.dart';
 
 var h;
 var w;
 
-void main(){
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform
+  );
   runApp(nectar());
 }
 

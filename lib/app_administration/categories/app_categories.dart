@@ -18,6 +18,11 @@ class _categoriesState extends State<categories> {
       appBar: AppBar(
         backgroundColor: theColors.third,
         automaticallyImplyLeading: false,
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+            child: const Icon(Icons.arrow_back,color: theColors.primaryColor)),
         centerTitle: true,
         title: const Text("Categories",style: TextStyle(
           fontWeight: FontWeight.w600,
