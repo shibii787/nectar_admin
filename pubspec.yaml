@@ -42,6 +42,7 @@ dependencies:
   google_sign_in: ^6.1.6
   side_navigation: ^1.0.4
   shared_preferences: ^2.2.3
+  flutter_riverpod:
 
 dev_dependencies:
   flutter_test:
