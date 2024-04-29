@@ -32,7 +32,6 @@ class CategoryModel{
     String? image
 }){
     return CategoryModel(
-        //name: name ?? this.name,
         itemName: itemName ?? this.itemName,
         price: price ?? this.price,
         qty: qty ?? this.qty,
