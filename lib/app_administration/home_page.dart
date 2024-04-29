@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nectar_admin/app_administration/categories/app_categories.dart';
 import 'package:nectar_admin/app_administration/users/app_users.dart';
-import 'package:nectar_admin/colors.dart';
+import 'package:nectar_admin/core/common/colors.dart';
 
 import '../main.dart';
 

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:nectar_admin/colors.dart';
+import 'package:nectar_admin/core/common/colors.dart';
 
 import '../../main.dart';
 

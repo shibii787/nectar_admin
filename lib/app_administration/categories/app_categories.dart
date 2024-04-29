@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nectar_admin/colors.dart';
+import 'package:nectar_admin/core/common/colors.dart';
 
 import '../../main.dart';
 
