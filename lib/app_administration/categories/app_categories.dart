@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:nectar_admin/app_administration/categories/bakery&snacks.dart';
+import 'package:nectar_admin/app_administration/categories/bevarages.dart';
+import 'package:nectar_admin/app_administration/categories/cooking%20oil%20categaries.dart';
 import 'package:nectar_admin/app_administration/categories/fruits_vegetables.dart';
+import 'package:nectar_admin/app_administration/categories/meat&fish.dart';
 import 'package:nectar_admin/core/common/colors.dart';
 
 import '../../main.dart';
@@ -67,6 +71,7 @@ class _categoriesState extends State<categories> {
                   ),
                   InkWell(
                     onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => cookingoil(),));
 
                     },
                     child: Container(
@@ -99,6 +104,7 @@ class _categoriesState extends State<categories> {
                 children: [
                   InkWell(
                     onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => meatandfish(),));
 
                     },
                     child: Container(
@@ -126,6 +132,7 @@ class _categoriesState extends State<categories> {
                   ),
                   InkWell(
                     onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => bakeryandsnacks(),));
 
                     },
                     child: Container(
@@ -185,6 +192,7 @@ class _categoriesState extends State<categories> {
                   ),
                   InkWell(
                     onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => bevarages(),));
 
                     },
                     child: Container(
