@@ -58,6 +58,7 @@ class _appUsersState extends State<appUsers> {
                           height: h*0.15,
                           width: w*1,
                           padding: EdgeInsets.all(w*0.03),
+                          margin: EdgeInsets.all(w*0.03),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(w*0.03),
                             border: Border.all(
