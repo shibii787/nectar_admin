@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:nectar_admin/core/common/colors.dart';
 
 import '../../main.dart';
@@ -34,77 +36,83 @@ class _fruitsAndVegetablesState extends State<fruitsAndVegetables> {
       ),
       body: Padding(
         padding: EdgeInsets.all(w*0.03),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            TextFormField(
-              controller: itemnameController,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(w*0.05),
-                ),
-                label: Text("Add New Item"),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(w*0.05),
-                  borderSide: BorderSide(
-                    color: theColors.third
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              TextFormField(
+                controller: itemnameController,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(w*0.05),
+                  ),
+                  label: Text("Add New Item"),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(w*0.05),
+                    borderSide: BorderSide(
+                      color: theColors.third
+                    )
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(w*0.05),
+                    borderSide: BorderSide(
+                      color: theColors.third
+                    )
                   )
                 ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(w*0.05),
-                  borderSide: BorderSide(
-                    color: theColors.third
-                  )
-                )
               ),
-            ),
-            TextFormField(
-              controller: priceController,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(w*0.05),
-                ),
-                label: Text("Add Price"),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(w*0.05),
-                  borderSide: BorderSide(
-                    color: theColors.third
+              SizedBox(height: w*0.03),
+              TextFormField(
+                controller: priceController,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(w*0.05),
+                  ),
+                  label: Text("Add Price"),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(w*0.05),
+                    borderSide: BorderSide(
+                      color: theColors.third
+                    )
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(w*0.05),
+                    borderSide: BorderSide(
+                      color: theColors.third
+                    )
                   )
                 ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(w*0.05),
-                  borderSide: BorderSide(
-                    color: theColors.third
-                  )
-                )
               ),
-            ),
-            TextFormField(
-              controller: qtyController,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(w*0.05),
-                ),
-                label: Text("Add Quantity"),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(w*0.05),
-                  borderSide: BorderSide(
-                    color: theColors.third
+              SizedBox(height: w*0.03),
+              TextFormField(
+                controller: qtyController,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(w*0.05),
+                  ),
+                  label: Text("Add Quantity"),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(w*0.05),
+                    borderSide: BorderSide(
+                      color: theColors.third
+                    )
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(w*0.05),
+                    borderSide: BorderSide(
+                      color: theColors.third
+                    )
                   )
                 ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(w*0.05),
-                  borderSide: BorderSide(
-                    color: theColors.third
-                  )
-                )
               ),
-            ),
-            ElevatedButton(
-                onPressed: () {
+              SizedBox(height: w*0.03),
+              ElevatedButton(
+                  onPressed: () {
 
-                }, child: Text("SUBMIT",))
-          ],
+                  }, child: Text("Add"))
+            ],
+          ),
         ),
       ),
     );
