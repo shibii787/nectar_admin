@@ -68,9 +68,40 @@ class _appUsersState extends State<appUsers> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(data[index]["name"]),
+                              Text(data[index]["name"],style: TextStyle(
+                                fontWeight: FontWeight.w600
+                              ),),
                               Row(
                                 children: [
+                                  ElevatedButton(
+                                      onPressed: () {
+                                        showDialog(
+                                            context: context, builder: (context) {
+                                              return AlertDialog(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(w*0.03)
+                                                ),
+                                                title: Center(
+                                                    child: Text("User Details",style: TextStyle(
+                                                      fontWeight: FontWeight.w600
+                                                    ),)),
+                                                actions: [
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                    children: [
+                                                      Text("Name : ${data[index]["name"]}",style: TextStyle(fontWeight: FontWeight.w500),),
+                                                      Text("Email : ${data[index]["email"]}",style: TextStyle(fontWeight: FontWeight.w500),),
+                                                      Text("Password : ${data[index]["password"]}",style: TextStyle(fontWeight: FontWeight.w500),),
+                                                      Text("ID : ${data[index]["id"]}",style: TextStyle(fontWeight: FontWeight.w500),),
+                                                      Text("Phone : ${data[index]["phoneNumber"].toString()}",style: TextStyle(fontWeight: FontWeight.w500),),
+                                                    ],
+                                                  )
+                                                ],
+                                              );
+                                            },);
+                                      },
+                                      child: Text("View")),
+                                  SizedBox(width: w*0.02),
                                   InkWell(
                                     onTap: () {
                                       
