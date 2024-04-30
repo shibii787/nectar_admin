@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nectar_admin/app_administration/categories/fruits_vegetables.dart';
 import 'package:nectar_admin/core/common/colors.dart';
 
 import '../../main.dart';
@@ -39,7 +40,7 @@ class _categoriesState extends State<categories> {
                 children: [
                   InkWell(
                     onTap: () {
-
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => fruitsAndVegetables(),));
                     },
                     child: Container(
                       height: h*0.2,
