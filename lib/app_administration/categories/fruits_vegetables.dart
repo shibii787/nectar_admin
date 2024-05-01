@@ -69,7 +69,7 @@ class _fruitsAndVegetablesState extends State<fruitsAndVegetables> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(w*0.05),
                   ),
-                  label: Text("Add Price"),
+                  label: Text("Add Item Price"),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(w*0.05),
                     borderSide: BorderSide(
