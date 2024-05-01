@@ -21,7 +21,7 @@ class _dairyandeggsState extends State<dairyandeggs> {
       backgroundColor: theColors.primaryColor,
       appBar: AppBar(
         backgroundColor: theColors.third,
-        title: Text("Store",style: TextStyle(
+        title: Text("Dairy and Eggs",style: TextStyle(
             fontWeight: FontWeight.w600,color: theColors.primaryColor
         ),),
         centerTitle: true,

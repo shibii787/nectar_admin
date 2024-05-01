@@ -22,7 +22,7 @@ class _bevaragesState extends State<bevarages> {
       backgroundColor: theColors.primaryColor,
       appBar: AppBar(
         backgroundColor: theColors.third,
-        title: Text("Store",style: TextStyle(
+        title: Text("Bevarages",style: TextStyle(
             fontWeight: FontWeight.w600,color: theColors.primaryColor
         ),),
         centerTitle: true,

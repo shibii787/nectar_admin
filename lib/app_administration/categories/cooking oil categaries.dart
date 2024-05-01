@@ -22,7 +22,7 @@ class _cookingoilState extends State<cookingoil> {
       backgroundColor: theColors.primaryColor,
       appBar: AppBar(
         backgroundColor: theColors.third,
-        title: Text("Store",style: TextStyle(
+        title: Text("Cooking Oil and Ghee",style: TextStyle(
             fontWeight: FontWeight.w600,color: theColors.primaryColor
         ),),
         centerTitle: true,

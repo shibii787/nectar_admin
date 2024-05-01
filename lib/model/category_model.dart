@@ -1,6 +1,6 @@
 class CategoryModel{
   final String itemName;
-  final int price;
+  final double price;
   final int qty;
   final String image;
   CategoryModel({
@@ -27,7 +27,7 @@ class CategoryModel{
   }
   CategoryModel copyWith({
     String? itemName,
-    int? price,
+    double? price,
     int? qty,
     String? image
 }){

@@ -46,6 +46,7 @@ dependencies:
   cached_network_image: ^3.3.0
   flutter_riverpod:
   google_fonts: 6.1.0
+  file_picker: ^8.0.3
 
 dev_dependencies:
   flutter_test:

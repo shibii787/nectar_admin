@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:nectar_admin/app_administration/categories/add_category.dart';
 import 'package:nectar_admin/app_administration/categories/app_categories.dart';
 import 'package:nectar_admin/app_administration/users/app_users.dart';
 import 'package:nectar_admin/core/common/colors.dart';
@@ -11,7 +13,6 @@ class homePage extends StatefulWidget {
   @override
   State<homePage> createState() => _homePageState();
 }
-
 class _homePageState extends State<homePage> {
   @override
   Widget build(BuildContext context) {
@@ -62,7 +63,7 @@ class _homePageState extends State<homePage> {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => categories(),));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => addCategory(),));
                   },
                   child: Container(
                     height: h*0.2,

@@ -24,7 +24,7 @@ class _fruitsAndVegetablesState extends State<fruitsAndVegetables> {
       backgroundColor: theColors.primaryColor,
       appBar: AppBar(
         backgroundColor: theColors.third,
-        title: Text("Store",style: TextStyle(
+        title: Text("Fruits and Vegetables",style: TextStyle(
           fontWeight: FontWeight.w600,color: theColors.primaryColor
         ),),
         centerTitle: true,

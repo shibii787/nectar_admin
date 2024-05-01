@@ -21,7 +21,7 @@ class _bakeryandsnacksState extends State<bakeryandsnacks> {
       backgroundColor: theColors.primaryColor,
       appBar: AppBar(
         backgroundColor: theColors.third,
-        title: Text("Store",style: TextStyle(
+        title: Text("Bakery and Snacks",style: TextStyle(
             fontWeight: FontWeight.w600,color: theColors.primaryColor
         ),),
         centerTitle: true,

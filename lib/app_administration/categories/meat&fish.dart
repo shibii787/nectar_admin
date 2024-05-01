@@ -1,19 +1,71 @@
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nectar_admin/core/common/colors.dart';
+import 'package:nectar_admin/feature/controller/collectionController.dart';
+import 'package:nectar_admin/model/category_model.dart';
 
 import '../../main.dart';
 
-class meatandfish extends StatefulWidget {
+class meatandfish extends ConsumerStatefulWidget {
   const meatandfish({super.key});
 
   @override
-  State<meatandfish> createState() => _meatandfishState();
+  ConsumerState<meatandfish> createState() => _meatandfishState();
 }
 
-class _meatandfishState extends State<meatandfish> {
+class _meatandfishState extends ConsumerState<meatandfish> {
+
+  PlatformFile? pickFile;
+  UploadTask? uploadTask;
+  String? urlDownlod;
+  Future selectFileToMessage(String name) async {
+    final result = await FilePicker.platform.pickFiles();
+    if (result == null) return;
+
+    pickFile = result.files.first;
+
+    // String? ext = pickFile?.name?.split('.')?.last;
+    final fileBytes = result.files.first.bytes;
+
+    // ignore: use_build_context_synchronously
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text("Uploading...")));
+    uploadFileToFireBase(name, fileBytes);
+
+    setState(() {});
+  }
+
+  Future uploadFileToFireBase(String name, fileBytes) async {
+    uploadTask = FirebaseStorage.instance
+        .ref('banner/${DateTime.now().toString()}-$name')
+        .putData(fileBytes,SettableMetadata(
+        contentType: 'image/jpeg'
+    ));
+    final snapshot = await uploadTask?.whenComplete(() {});
+    urlDownlod = (await snapshot?.ref?.getDownloadURL())!;
+
+    // ignore: use_build_context_synchronously
+    // showUploadMessage(context, '$name Uploaded Successfully...');
+    await Future.delayed(const Duration(seconds: 2));
+    // ignore: use_build_context_synchronously
+    // ScaffoldMessenger.of(context).clearSnackBars();
+    setState(() {});
+  }
+
   TextEditingController itemnameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController qtyController = TextEditingController();
+
+  addItemFunc(){
+    CategoryModel categoryModel = CategoryModel(
+        itemName: itemnameController.text,
+        price: double.tryParse(priceController.text)!,
+        qty: int.tryParse(qtyController.text)!,
+        image: "");
+    ref.watch(addCollectionController).controlCollectionFunc(categoryModel: categoryModel);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +73,7 @@ class _meatandfishState extends State<meatandfish> {
       backgroundColor: theColors.primaryColor,
       appBar: AppBar(
         backgroundColor: theColors.third,
-        title: Text("Store",style: TextStyle(
+        title: Text("Meat and Fish",style: TextStyle(
             fontWeight: FontWeight.w600,color: theColors.primaryColor
         ),),
         centerTitle: true,
@@ -101,7 +153,7 @@ class _meatandfishState extends State<meatandfish> {
             ),
             ElevatedButton(
                 onPressed: () {
-
+                  addItemFunc();
                 }, child: Text("SUBMIT",))
           ],
         ),
