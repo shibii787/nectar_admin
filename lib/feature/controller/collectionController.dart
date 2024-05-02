@@ -11,8 +11,8 @@ class AddCollectionController{
     required AddCollectionRepository addRepository
 }) : _addRepository = addRepository;
 
-controlCollectionFunc({required CategoryModel categoryModel}){
-  _addRepository.collectionFunction(categoryModel: categoryModel);
+controlCollectionFunc({required CategoryModel categoryModel,required String docIdss}){
+  _addRepository.collectionFunction(categoryModel: categoryModel,docId: docIdss);
 }
 
 }

@@ -12,7 +12,9 @@ import 'package:nectar_admin/model/category_model.dart';
 import '../../main.dart';
 
 class meatandfish extends ConsumerStatefulWidget {
-  const meatandfish({super.key});
+  final String categoryID;
+  final String categoryName;
+  const meatandfish({super.key,required this.categoryID,required this.categoryName});
 
   @override
   ConsumerState<meatandfish> createState() => _meatandfishState();
@@ -42,7 +44,7 @@ class _meatandfishState extends ConsumerState<meatandfish> {
 
   Future uploadFileToFireBase(String name, fileBytes) async {
     uploadTask = FirebaseStorage.instance
-        .ref('banner/${DateTime.now().toString()}-$name')
+        .ref('meat & fish/${DateTime.now().toString()}-$name')
         .putData(fileBytes,SettableMetadata(
         contentType: 'image/jpeg'
     ));
@@ -68,7 +70,12 @@ class _meatandfishState extends ConsumerState<meatandfish> {
         price: double.tryParse(priceController.text)!,
         qty: int.tryParse(qtyController.text)!,
         image: urlDownlod ?? '');
-    ref.watch(addCollectionController).controlCollectionFunc(categoryModel: categoryModel);
+
+    itemnameController.clear();
+    priceController.clear();
+    qtyController.clear();
+
+    ref.watch(addCollectionController).controlCollectionFunc(categoryModel: categoryModel,docIdss: widget.categoryID);
   }
 
   @override
@@ -77,7 +84,7 @@ class _meatandfishState extends ConsumerState<meatandfish> {
       backgroundColor: theColors.primaryColor,
       appBar: AppBar(
         backgroundColor: theColors.third,
-        title: Text("Meat and Fish",style: TextStyle(
+        title: Text("${widget.categoryName}",style: TextStyle(
             fontWeight: FontWeight.w600,color: theColors.primaryColor
         ),),
         centerTitle: true,

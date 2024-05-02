@@ -7,6 +7,7 @@ import 'package:nectar_admin/app_administration/categories/dairy&eggs.dart';
 import 'package:nectar_admin/app_administration/categories/fruits_vegetables.dart';
 import 'package:nectar_admin/app_administration/categories/meat&fish.dart';
 import 'package:nectar_admin/core/common/colors.dart';
+import 'package:nectar_admin/model/category_model.dart';
 
 import '../../main.dart';
 
@@ -64,12 +65,7 @@ class _categoriesState extends State<categories> {
                           itemBuilder: (context, index) {
                             return InkWell(
                               onTap: () {
-                                index==0?Navigator.push(context, MaterialPageRoute(builder: (context) => meatandfish(),)):index;
-                                index==1?Navigator.push(context, MaterialPageRoute(builder: (context) => bevarages(),)):index;
-                                index==2?Navigator.push(context, MaterialPageRoute(builder: (context) => fruitsAndVegetables(),)):index;
-                                index==3?Navigator.push(context, MaterialPageRoute(builder: (context) => dairyandeggs(),)):index;
-                                index==4?Navigator.push(context, MaterialPageRoute(builder: (context) => cookingoil(),)):index;
-                                index==5?Navigator.push(context, MaterialPageRoute(builder: (context) => bakeryandsnacks(),)):index;
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => meatandfish(categoryName:data[index]["item"],categoryID: data[index]["id"],),));
                               },
                               child: Container(
                                 height: h * 0.2,

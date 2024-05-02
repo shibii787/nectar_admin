@@ -11,10 +11,10 @@ class AddCollectionRepository{
    required FirebaseFirestore  firestore
 }) : _firestore = firestore;
 
-CollectionReference get _items => _firestore.collection("items");
+CollectionReference get _subitems => _firestore.collection("categories");
 
-collectionFunction({required CategoryModel categoryModel}){
-  _items.add(categoryModel.toMap());
+collectionFunction({required CategoryModel categoryModel,required String docId}){
+  _subitems.doc(docId).collection("subItems").add(categoryModel.toMap());
 }
 
 }
