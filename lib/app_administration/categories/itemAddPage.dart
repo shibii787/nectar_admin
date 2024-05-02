@@ -17,10 +17,10 @@ class ItemAddPage extends ConsumerStatefulWidget {
   const ItemAddPage({super.key,required this.categoryID,required this.categoryName});
 
   @override
-  ConsumerState<ItemAddPage> createState() => _meatandfishState();
+  ConsumerState<ItemAddPage> createState() => _itemAddPageState();
 }
 
-class _meatandfishState extends ConsumerState<ItemAddPage> {
+class _itemAddPageState extends ConsumerState<ItemAddPage> {
 
   PlatformFile? pickFile;
   UploadTask? uploadTask;
