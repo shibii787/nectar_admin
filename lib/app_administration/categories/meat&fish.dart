@@ -67,7 +67,7 @@ class _meatandfishState extends ConsumerState<meatandfish> {
         itemName: itemnameController.text,
         price: double.tryParse(priceController.text)!,
         qty: int.tryParse(qtyController.text)!,
-        image: "");
+        image: urlDownlod ?? '');
     ref.watch(addCollectionController).controlCollectionFunc(categoryModel: categoryModel);
   }
 
