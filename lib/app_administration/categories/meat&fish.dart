@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -92,25 +94,31 @@ class _meatandfishState extends ConsumerState<meatandfish> {
           children: [
             Stack(
               children: [
-                CircleAvatar(
-                  radius: w*0.1,
-                  backgroundColor: theColors.secondary,
-                ),
-                Positioned(
-                  left: w*0.15,
-                  bottom: w*0.02,
-                  child: InkWell(
-                    onTap: () {
-                    },
-                    child: CircleAvatar(
-                      radius: w*0.015,
-                      backgroundColor: theColors.third,
-                      child: Center(
-                        child: Icon(Icons.add,color: theColors.secondary,),
-                      ),
-                    ),
+                InkWell(
+                  onTap: () {
+                    selectFileToMessage("");
+                  },
+                  child: CircleAvatar(
+                    radius: w*0.1,
+                    backgroundColor: theColors.secondary,
+                    backgroundImage: pickFile != null ? MemoryImage(Uint8List.fromList(pickFile!.bytes as List<int>)) : null,
                   ),
-                )
+                ),
+                // Positioned(
+                //   left: w*0.15,
+                //   bottom: w*0.02,
+                //   child: InkWell(
+                //     onTap: () {
+                //     },
+                //     child: CircleAvatar(
+                //       radius: w*0.015,
+                //       backgroundColor: theColors.third,
+                //       child: Center(
+                //         child: Icon(Icons.add,color: theColors.secondary,),
+                //       ),
+                //     ),
+                //   ),
+                // )
               ],
             ),
             TextFormField(
