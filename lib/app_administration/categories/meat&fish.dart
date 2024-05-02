@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nectar_admin/core/common/colors.dart';
@@ -54,6 +55,7 @@ class _meatandfishState extends ConsumerState<meatandfish> {
     setState(() {});
   }
 
+
   TextEditingController itemnameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController qtyController = TextEditingController();
@@ -88,6 +90,29 @@ class _meatandfishState extends ConsumerState<meatandfish> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            Stack(
+              children: [
+                CircleAvatar(
+                  radius: w*0.1,
+                  backgroundColor: theColors.secondary,
+                ),
+                Positioned(
+                  left: w*0.15,
+                  bottom: w*0.02,
+                  child: InkWell(
+                    onTap: () {
+                    },
+                    child: CircleAvatar(
+                      radius: w*0.015,
+                      backgroundColor: theColors.third,
+                      child: Center(
+                        child: Icon(Icons.add,color: theColors.secondary,),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
             TextFormField(
               controller: itemnameController,
               decoration: InputDecoration(
