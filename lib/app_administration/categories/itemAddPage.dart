@@ -44,7 +44,7 @@ class _itemAddPageState extends ConsumerState<ItemAddPage> {
 
   Future uploadFileToFireBase(String name, fileBytes) async {
     uploadTask = FirebaseStorage.instance
-        .ref('meat & fish/${DateTime.now().toString()}-$name')
+        .ref('items/${DateTime.now().toString()}-$name')
         .putData(fileBytes,SettableMetadata(
         contentType: 'image/jpeg'
     ));

@@ -104,7 +104,7 @@ class _appUsersState extends State<appUsers> {
                                   SizedBox(width: w*0.02),
                                   InkWell(
                                     onTap: () {
-                                      
+                                      FirebaseFirestore.instance.collection("account").doc(data[index].id).delete();
                                     },
                                       child: Icon(Icons.delete))
                                 ],
