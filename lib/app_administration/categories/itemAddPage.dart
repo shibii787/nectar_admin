@@ -2,7 +2,6 @@ import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nectar_admin/core/common/colors.dart';
@@ -14,7 +13,10 @@ import '../../main.dart';
 class ItemAddPage extends ConsumerStatefulWidget {
   final String categoryID;
   final String categoryName;
-  const ItemAddPage({super.key,required this.categoryID,required this.categoryName});
+  const ItemAddPage({super.key,
+    required this.categoryID,
+    required this.categoryName
+  });
 
   @override
   ConsumerState<ItemAddPage> createState() => _itemAddPageState();

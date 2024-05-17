@@ -94,6 +94,7 @@ class _appUsersState extends State<appUsers> {
                                                       Text("Password : ${data[index]["password"]}",style: TextStyle(fontWeight: FontWeight.w500),),
                                                       Text("ID : ${data[index]["id"]}",style: TextStyle(fontWeight: FontWeight.w500),),
                                                       Text("Phone : ${data[index]["phoneNumber"].toString()}",style: TextStyle(fontWeight: FontWeight.w500),),
+                                                      Text("Location : ${data[index]["location"]}",style: TextStyle(fontWeight: FontWeight.w500),),
                                                     ],
                                                   )
                                                 ],
