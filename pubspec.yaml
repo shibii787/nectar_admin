@@ -40,13 +40,13 @@ dependencies:
   firebase_storage: ^11.6.0
   firebase_auth:
   google_sign_in: ^6.1.6
-  side_navigation: ^1.0.4
+  sidebarx: ^0.17.1
   shared_preferences: ^2.2.3
   image_picker: ^1.0.4
   cached_network_image: ^3.3.0
   flutter_riverpod:
   google_fonts: 6.1.0
-  file_picker: ^8.0.3
+  file_picker:
 
 dev_dependencies:
   flutter_test:

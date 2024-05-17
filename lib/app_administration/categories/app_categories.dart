@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:nectar_admin/app_administration/categories/itemAddPage.dart';
 import 'package:nectar_admin/core/common/colors.dart';
-import 'package:nectar_admin/model/category_model.dart';
 
 import '../../main.dart';
 

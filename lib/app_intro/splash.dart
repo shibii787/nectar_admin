@@ -3,7 +3,6 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:nectar_admin/app_administration/home_page.dart';
 import 'package:nectar_admin/core/common/colors.dart';
-import 'package:nectar_admin/core/common/images.dart';
 
 import '../main.dart';
 
@@ -20,7 +19,7 @@ class _splashPageState extends State<splashPage> {
   void initState() {
     Future.delayed(const Duration(
       seconds: 3
-    )).then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => const homePage(),)));
+    )).then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => homePage(),)));
     // TODO: implement initState
     super.initState();
   }

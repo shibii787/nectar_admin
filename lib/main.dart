@@ -2,7 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nectar_admin/app_administration/home_page.dart';
 import 'package:nectar_admin/app_intro/splash.dart';
+import 'package:sidebarx/sidebarx.dart';
 
 import 'firebase_options.dart';
 
@@ -26,6 +28,7 @@ class nectar extends StatefulWidget {
 }
 
 class _nectarState extends State<nectar> {
+
   @override
   Widget build(BuildContext context) {
 
@@ -38,7 +41,7 @@ class _nectarState extends State<nectar> {
       },
       child: MaterialApp(
         theme: ThemeData(
-            textTheme: GoogleFonts.poppinsTextTheme()
+            textTheme: GoogleFonts.poppinsTextTheme(),
         ),
         debugShowCheckedModeBanner: false,
         home: splashPage(),
