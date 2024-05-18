@@ -85,10 +85,15 @@ class _categoriesState extends State<categories> {
                                 ),
                               ),
                             );
+
                           },
                         );
+
                 },
-              )
+              ),
+              ElevatedButton(onPressed: () {
+                Text("Submit");
+              }, child: Text(""))
             ],
           ),
         ),
