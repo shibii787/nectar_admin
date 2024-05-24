@@ -143,7 +143,7 @@ class _addCategoryState extends State<addCategory> {
 
             ElevatedButton(onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => categories(),));
-            }, child: Text("Go To Page"))
+            }, child: Text("Go To Page")),
 
           ],
         ),

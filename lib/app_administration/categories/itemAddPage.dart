@@ -3,6 +3,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:nectar_admin/app_administration/categories/appView.dart';
+
 import 'package:nectar_admin/core/common/colors.dart';
 import 'package:nectar_admin/feature/controller/addingController.dart';
 import 'package:nectar_admin/model/category_model.dart';
@@ -64,17 +66,20 @@ class _itemAddPageState extends ConsumerState<ItemAddPage> {
   TextEditingController itemnameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController qtyController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
 
   addItemFunc(){
     CategoryModel categoryModel = CategoryModel(
         itemName: itemnameController.text,
         price: double.tryParse(priceController.text)!,
         qty: int.tryParse(qtyController.text)!,
+        description: descriptionController.text,
         image: urlDownlod ?? '');
 
     itemnameController.clear();
     priceController.clear();
     qtyController.clear();
+    descriptionController.clear();
 
     ref.watch(addController).controlCollectionFunc(categoryModel: categoryModel,docIdss: widget.categoryID);
   }
@@ -107,7 +112,7 @@ class _itemAddPageState extends ConsumerState<ItemAddPage> {
                     selectFileToMessage("");
                   },
                   child: CircleAvatar(
-                    radius: w*0.1,
+                    radius: w*0.08,
                     backgroundColor: theColors.secondary,
                     backgroundImage: pickFile != null ? MemoryImage(Uint8List.fromList(pickFile!.bytes as List<int>)) : null,
                   ),
@@ -192,10 +197,41 @@ class _itemAddPageState extends ConsumerState<ItemAddPage> {
                   )
               ),
             ),
-            ElevatedButton(
-                onPressed: () {
-                  addItemFunc();
-                }, child: Text("SUBMIT",))
+            TextFormField(
+              controller: descriptionController,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(w*0.05),
+                  ),
+                  label: Text("Description"),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(w*0.05),
+                      borderSide: BorderSide(
+                          color: theColors.third
+                      )
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(w*0.05),
+                      borderSide: BorderSide(
+                          color: theColors.third
+                      )
+                  )
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      addItemFunc();
+                    }, child: Text("SUBMIT",)),
+                ElevatedButton(onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Appview(),));
+                },
+                    child: Text("Items")
+                )
+              ],
+            )
           ],
         ),
       ),

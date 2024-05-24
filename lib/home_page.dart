@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nectar_admin/app_administration/categories/add_category.dart';
+import 'package:nectar_admin/app_administration/categories/appView.dart';
 import 'package:nectar_admin/app_administration/users/app_users.dart';
 import 'package:nectar_admin/core/common/colors.dart';
 
@@ -141,6 +142,38 @@ class _homePageState extends State<homePage> {
                     ),
                     child: Center(
                       child: Text("Best Selling Items",style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          color: theColors.primaryColor
+                      ),),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Appview(),));
+                  },
+                  child: Container(
+                    height: h*0.2,
+                    width: w*0.4,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(w*0.04),
+                        color: theColors.third,
+                        boxShadow: [
+                          BoxShadow(
+                              color: theColors.secondary,
+                              blurRadius: w*0.01,
+                              spreadRadius: w*0.0001,
+                              offset: Offset(0, 4)
+                          )
+                        ]
+                    ),
+                    child: Center(
+                      child: Text("App view",style: TextStyle(
                           fontWeight: FontWeight.w500,
                           color: theColors.primaryColor
                       ),),
