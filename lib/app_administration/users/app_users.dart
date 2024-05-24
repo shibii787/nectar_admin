@@ -1,17 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nectar_admin/core/common/colors.dart';
+import 'package:nectar_admin/feature/controller/addingController.dart';
 
 import '../../main.dart';
 
-class appUsers extends StatefulWidget {
+class appUsers extends ConsumerStatefulWidget {
   const appUsers({super.key});
 
   @override
-  State<appUsers> createState() => _appUsersState();
+  ConsumerState<appUsers> createState() => _appUsersState();
 }
 
-class _appUsersState extends State<appUsers> {
+class _appUsersState extends ConsumerState<appUsers> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,92 +36,84 @@ class _appUsersState extends State<appUsers> {
       ),
       body: Padding(
         padding: EdgeInsets.all(w*0.03),
-        child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Column(
-            children: [
-              StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance.collection("account").snapshots(),
-                  builder: (context, snapshot) {
-                    if(!snapshot.hasData){
-                      return Center(
-                        child: Text("No Data Found"),
-                      );
-                    }
-                    var data=snapshot.data!.docs;
-                    return data.length==0?
-                        Text("No User Found")
-                    : ListView.builder(
+        child: Column(
+          children: [
+            ref.watch(streamdataProvider).when(
+                data: (data) {
+                  return Expanded(
+                    child: GridView.builder(
                       itemCount: data.length,
-                      physics: BouncingScrollPhysics(),
-                        scrollDirection: Axis.vertical,
+                        physics: BouncingScrollPhysics(),
                         shrinkWrap: true,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          childAspectRatio: 1,
+                            crossAxisSpacing: w*0.01,
+                            mainAxisSpacing: w*0.01,
+                            crossAxisCount: 4),
                         itemBuilder: (context, index) {
-                        return Container(
-                          height: h*0.15,
-                          width: w*1,
-                          padding: EdgeInsets.all(w*0.03),
-                          margin: EdgeInsets.all(w*0.03),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(w*0.03),
-                            border: Border.all(
-                              color: theColors.secondary
-                            )
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(data[index]["name"],style: TextStyle(
-                                fontWeight: FontWeight.w600
-                              ),),
-                              Row(
-                                children: [
-                                  ElevatedButton(
-                                      onPressed: () {
-                                        showDialog(
-                                            context: context, builder: (context) {
-                                              return AlertDialog(
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(w*0.03)
-                                                ),
-                                                title: Center(
-                                                    child: Text("User Details",style: TextStyle(
-                                                      fontWeight: FontWeight.w600
-                                                    ),)),
-                                                actions: [
-                                                  Column(
-                                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                    children: [
-                                                      Text("Name : ${data[index]["name"]}",style: TextStyle(fontWeight: FontWeight.w500),),
-                                                      Text("Email : ${data[index]["email"]}",style: TextStyle(fontWeight: FontWeight.w500),),
-                                                      Text("Password : ${data[index]["password"]}",style: TextStyle(fontWeight: FontWeight.w500),),
-                                                      Text("ID : ${data[index]["id"]}",style: TextStyle(fontWeight: FontWeight.w500),),
-                                                      Text("Phone : ${data[index]["phoneNumber"].toString()}",style: TextStyle(fontWeight: FontWeight.w500),),
-                                                      Text("Location : ${data[index]["location"]}",style: TextStyle(fontWeight: FontWeight.w500),),
-                                                    ],
-                                                  )
-                                                ],
-                                              );
-                                            },);
-                                      },
-                                      child: Text("View")),
-                                  SizedBox(width: w*0.02),
-                                  InkWell(
-                                    onTap: () {
+                          return Container(
+                            height: h*0.8,
+                            width: w*0.8,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(w*0.03),
+                              color: Colors.red
+                            ),
+                            margin: EdgeInsets.all(w*0.02),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(data[index].name),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    ElevatedButton(onPressed: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return AlertDialog(
+                                              title: Center(
+                                                  child: Text("User Details",style: TextStyle(
+                                                    fontWeight: FontWeight.w600
+                                                  ),)),
+                                              actions: [
+                                                Column(
+                                                  children: [
+                                                    Text("Name: ${data[index].name}"),
+                                                    Text("Email: ${data[index].email}"),
+                                                    Text("Password: ${data[index].password}"),
+                                                    Text("Location: ${data[index].location}"),
+                                                    Text("PhoneNumber: ${data[index].name}"),
+                                                    Text("ID: ${data[index].id}"),
+                                                  ],
+                                                )
+                                              ],
+                                            );
+                                          },);
+                                    }, child: Text("View")),
+
+                                    ElevatedButton(onPressed: () {
                                       FirebaseFirestore.instance.collection("account").doc(data[index].id).delete();
-                                    },
-                                      child: Icon(Icons.delete))
-                                ],
-                              )
-                            ],
-                          ),
-                        );
-                        },);
-                  },)
-            ],
-          ),
+                                    }, child: Icon(Icons.delete_outline))
+                                  ],
+                                )
+                              ],
+                            ),
+                          );
+                        },),
+                  );
+                },
+                error: (error, stackTrace) {
+                  return Text(error.toString());
+                },
+                loading: () {
+                  return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                },)
+          ],
         ),
       ),
     );
   }
 }
+

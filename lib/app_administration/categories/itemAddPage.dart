@@ -4,7 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nectar_admin/core/common/colors.dart';
-import 'package:nectar_admin/feature/controller/collectionController.dart';
+import 'package:nectar_admin/feature/controller/addingController.dart';
 import 'package:nectar_admin/model/category_model.dart';
 
 import '../../main.dart';
@@ -76,7 +76,7 @@ class _itemAddPageState extends ConsumerState<ItemAddPage> {
     priceController.clear();
     qtyController.clear();
 
-    ref.watch(addCollectionController).controlCollectionFunc(categoryModel: categoryModel,docIdss: widget.categoryID);
+    ref.watch(addController).controlCollectionFunc(categoryModel: categoryModel,docIdss: widget.categoryID);
   }
 
   @override
