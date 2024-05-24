@@ -3,6 +3,7 @@ import 'package:nectar_admin/home_page.dart';
 import 'package:nectar_admin/core/common/colors.dart';
 
 import '../main.dart';
+import 'login_page.dart';
 
 class splashPage extends StatefulWidget {
   const splashPage({super.key});
@@ -17,7 +18,7 @@ class _splashPageState extends State<splashPage> {
   void initState() {
     Future.delayed(const Duration(
       seconds: 3
-    )).then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => homePage(),)));
+    )).then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => loginPage(),)));
     // TODO: implement initState
     super.initState();
   }
