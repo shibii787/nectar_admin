@@ -75,44 +75,53 @@ class _AppviewState extends State<Appview> {
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
+                      crossAxisCount: 3,
                       crossAxisSpacing: w * 0.03,
                       mainAxisSpacing: w * 0.03,
                       childAspectRatio:3,
                     ),
                     itemBuilder: (context, index) {
-                      return Container(
-                        height: w*0.1,
-                        width: w*0.1,
-                        padding: EdgeInsets.only(left: w*0.03,right: w*0.03),
-                        margin: EdgeInsets.all(w*0.01),
-                        decoration: BoxDecoration(
-                          color: theColors.third.withOpacity(0.2),
-                          borderRadius: BorderRadius.circular(w * 0.01),
-                          border: Border.all(width: w * 0.002, color: theColors.third),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                      return Center(
+                        child: Container(
+                          height: w*0.4,
+                          width: w*0.4,
+                          // padding: EdgeInsets.only(left: w*0.03,right: w*0.03),
+                          // margin: EdgeInsets.all(w*0.01),
+                          decoration: BoxDecoration(
+                            color: theColors.third.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(w * 0.01),
+                            border: Border.all(width: w * 0.002, color: theColors.third),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: w*0.033,
+                                width: w*0.2,
 
+                                child: Text(newDetails[index]["ItemName"],style: TextStyle(
+                                  fontWeight: FontWeight.w600,
 
-                            Text(newDetails[index]["ItemName"],style: TextStyle(
-                              fontWeight: FontWeight.w600,
+                                ),),
+                              ),
+                              Container(
+                                height: w*0.033,
+                                width: w*0.2,
 
-                            ),),
-                            Text("Quantity : ${newDetails[index]["qty"]}".toString(),style: TextStyle(
-                                fontWeight: FontWeight.w600
-                            ),),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text("₹${newDetails[index]["price"]}".toString(),style: TextStyle(
+                                child: Text("Quantity : ${newDetails[index]["qty"]}".toString(),style: TextStyle(
+                                    fontWeight: FontWeight.w600
+                                ),),
+                              ),
+                              Container(
+                                height: w*0.033,
+                                width: w*0.2,
+                                child: Text("₹${newDetails[index]["price"]}".toString(),style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                 ),),
-                              ],
-                            ),
-                          ],
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },),

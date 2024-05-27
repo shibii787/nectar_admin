@@ -173,7 +173,7 @@ class _homePageState extends State<homePage> {
                         ]
                     ),
                     child: Center(
-                      child: Text("App view",style: TextStyle(
+                      child: Text("Items view",style: TextStyle(
                           fontWeight: FontWeight.w500,
                           color: theColors.primaryColor
                       ),),
