@@ -10,6 +10,7 @@ import '../repository/addingRepository.dart';
 final addController = Provider((ref) => AddController(addRepository: ref.watch(addRepository)));
 
 final streamdataProvider = StreamProvider((ref) => ref.watch(addController).streamController());
+final bestsellingProvider = StreamProvider((ref) => ref.watch(addController).bestsellingStream());
 
 class AddController{
   final AddRepository _addRepository;
@@ -24,7 +25,9 @@ controlCollectionFunc({required CategoryModel categoryModel,required String docI
   Stream<List<UserModel>> streamController(){
   return _addRepository.stream();
 }
-
+Stream<List<BestSellingModel>>bestsellingStream(){
+  return _addRepository.bestsellingStream();
+}
 controlExclusiveFunc({required ExclusiveModel exclusiveModel}){
   _addRepository.exclusiveCollectionFunc(exclusiveModel: exclusiveModel);
 }

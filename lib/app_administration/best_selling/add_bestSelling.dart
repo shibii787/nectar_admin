@@ -20,10 +20,10 @@ class BestSelling extends ConsumerStatefulWidget {
 }
 
 class _BestSellingState extends ConsumerState<BestSelling> {
-  TextEditingController itemsName=TextEditingController();
-  TextEditingController price=TextEditingController();
-  TextEditingController qty=TextEditingController();
-  TextEditingController description=TextEditingController();
+  TextEditingController itemsNameController=TextEditingController();
+  TextEditingController priceController=TextEditingController();
+  TextEditingController qtyController=TextEditingController();
+  TextEditingController descriptionController=TextEditingController();
   PlatformFile? pickFile;
   UploadTask? uploadTask;
   String? urlDownlod;
@@ -61,10 +61,10 @@ class _BestSellingState extends ConsumerState<BestSelling> {
   }
   addBestSelling(){
     BestSellingModel bestSellingModel=BestSellingModel(
-        itemName: itemsName.text,
-        price: double.tryParse(price.text)!,
-        qty: int.tryParse(qty.text)!,
-        description: description.text,
+        itemName: itemsNameController.text,
+        price: double.tryParse(priceController.text)!,
+        qty: int.tryParse(qtyController.text)!,
+        description: descriptionController.text,
         image: urlDownlod??"",
         id: "");
     ref.watch(addController).controllBestsellingFunction(bestsellingModel: bestSellingModel);
@@ -121,11 +121,12 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                                       physics: BouncingScrollPhysics(),
                                       children: [
                                         TextFormField(
-                                          controller: itemsName,
+                                          controller: itemsNameController,
                                           decoration: InputDecoration(
                                               border: OutlineInputBorder(
                                                   borderRadius: BorderRadius.circular(w*0.05)
                                               ),
+                                              labelText: "Name",
                                               focusedBorder: OutlineInputBorder(
                                                 borderRadius: BorderRadius.circular(w*0.05),
                                                 borderSide: BorderSide(
@@ -141,11 +142,12 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                                           ),
                                         ),
                                         TextFormField(
-                                          controller: price,
+                                          controller: priceController,
                                           decoration: InputDecoration(
                                               border: OutlineInputBorder(
                                                   borderRadius: BorderRadius.circular(w*0.05)
                                               ),
+                                              labelText: "Price",
                                               focusedBorder: OutlineInputBorder(
                                                 borderRadius: BorderRadius.circular(w*0.05),
                                                 borderSide: BorderSide(
@@ -161,11 +163,12 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                                           ),
                                         ),
                                         TextFormField(
-                                          controller: qty,
+                                          controller: qtyController,
                                           decoration: InputDecoration(
                                               border: OutlineInputBorder(
                                                   borderRadius: BorderRadius.circular(w*0.05)
                                               ),
+                                              labelText: "Quantity",
                                               focusedBorder: OutlineInputBorder(
                                                 borderRadius: BorderRadius.circular(w*0.05),
                                                 borderSide: BorderSide(
@@ -181,11 +184,12 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                                           ),
                                         ),
                                         TextFormField(
-                                          controller: description,
+                                          controller: descriptionController,
                                           decoration: InputDecoration(
                                               border: OutlineInputBorder(
                                                   borderRadius: BorderRadius.circular(w*0.05)
                                               ),
+                                              labelText: "Description",
                                               focusedBorder: OutlineInputBorder(
                                                 borderRadius: BorderRadius.circular(w*0.05),
                                                 borderSide: BorderSide(
@@ -205,9 +209,6 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                                     ElevatedButton(
                                         onPressed: () {
                                           addBestSelling();
-                                          setState(() {
-
-                                          });
                                         }, child: Text("Add")),
 
                                   ],
@@ -215,13 +216,79 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                               ),
                             ]
                         ),
+
                         ListView(
                             shrinkWrap: true,
                             physics: BouncingScrollPhysics(),
                             children: [
-                              Container(
-                                color: Colors.blueGrey,
-                              ),]
+                              ref.watch(bestsellingProvider).when(data: (data) {
+                                data.sort((a, b) => a.itemName.compareTo(b.itemName));
+                                return  Expanded(
+                                  child: GridView.builder(
+                                    itemCount: data.length,
+                                    physics: BouncingScrollPhysics(),
+                                    scrollDirection: Axis.vertical,
+                                    shrinkWrap: true,
+                                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 3,
+                                      crossAxisSpacing: w * 0.03,
+                                      mainAxisSpacing: w * 0.03,
+                                      childAspectRatio: 1,
+                                    ),
+                                    itemBuilder: (context, index) {
+                                      return Container(
+                                        height: w*0.55,
+                                        width: w*0.35,
+                                        padding: EdgeInsets.all(w*0.03),
+                                        margin: EdgeInsets.all(w*0.03),
+                                        decoration: BoxDecoration(
+                                          color: theColors.third.withOpacity(0.2),
+                                          borderRadius: BorderRadius.circular(w * 0.05),
+                                          border: Border.all(width: w * 0.002, color: theColors.third),
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Name : ${data[index].itemName}",
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            Text(
+                                              "₹${data[index].price}",
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            Text(
+                                              "Quantity : ${data[index].qty}",
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            Text(
+                                              "Description : ${data[index].description}",
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },),
+                                );
+                              }, error:  (error, stackTrace) {
+                                return Text(error.toString());
+                              },
+                                loading:  () {
+                                  return Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                },),
+
+                              ]
                         )
                       ]),
                 )
