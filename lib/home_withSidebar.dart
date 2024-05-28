@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:nectar_admin/app_administration/users/app_users.dart';
+import 'package:nectar_admin/home_page.dart';
+import 'package:nectar_admin/banner_page.dart';
+import 'package:nectar_admin/settings_page.dart';
+import 'package:nectar_admin/user_only.dart';
 
 import 'main.dart';
 
@@ -15,7 +19,10 @@ class homewithSidebar extends StatefulWidget {
 class _homewithSidebarState extends State<homewithSidebar> {
 
   final List<Widget> _screens =[
-    appUsers(),
+    userpageOnly(),
+    homePage(),
+    bannerPage(),
+    settingsPage()
   ];
 
   int _selectedIndex = 0;
@@ -23,12 +30,7 @@ class _homewithSidebarState extends State<homewithSidebar> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: Center(child: Text("Admin App",
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: w*0.02,
-          fontWeight: FontWeight.bold
-        ),)),
+        automaticallyImplyLeading: false,
       ),
       bottomNavigationBar: MediaQuery.of(context).size.width < 640 ? BottomNavigationBar(
         currentIndex: _selectedIndex,
@@ -41,13 +43,19 @@ class _homewithSidebarState extends State<homewithSidebar> {
         },
         items: [
           BottomNavigationBarItem(
+              icon: Icon(Icons.person), label: 'Person'),
+          BottomNavigationBarItem(
               icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.feed), label: 'Feed'),
+              icon: Icon(Icons.feed), label: 'Banner'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite), label: 'Favorites'),
+              icon: Icon(Icons.settings) , label:  'Settings'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.settings) , label:  'Settings')
+            icon: Padding(
+              padding:  EdgeInsets.only(bottom: w*0.03),
+              child: Icon(Icons.logout),
+            ), label: 'Logout')
+
         ],
       ): null,
       body: Row(
@@ -62,30 +70,24 @@ class _homewithSidebarState extends State<homewithSidebar> {
               selectedIndex: _selectedIndex,
               destinations: [
                 NavigationRailDestination(
+                    icon: Icon(Icons.person), label: Text("Person")),
+                NavigationRailDestination(
                     icon: Icon(Icons.home), label: Text("Home")),
                 NavigationRailDestination(
-                    icon: Icon(Icons.feed), label: Text("Feed")),
-                NavigationRailDestination(
-                    icon: Icon(Icons.favorite), label: Text("Favorite")),
+                    icon: Icon(Icons.feed), label: Text("Banner")),
                 NavigationRailDestination(
                     icon: Icon(Icons.settings), label: Text("Settings")),
               ],
-
             labelType: NavigationRailLabelType.all,
             selectedLabelTextStyle: TextStyle(
               color: Colors.teal
             ),
-
             unselectedLabelTextStyle:TextStyle() ,
-            leading: Column(
+            trailing: Column(
               children: [
-                SizedBox(
-                  height: 8,
-                ),
-                CircleAvatar(
-                  radius: 20,
-                  child: Icon(Icons.person),
-                )
+                SizedBox(height: w*0.23,),
+                Icon(Icons.logout,
+                size: w*0.018,)
               ],
             ),
           ),

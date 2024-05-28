@@ -20,12 +20,12 @@ class _homePageState extends State<homePage> {
     return Scaffold(
       backgroundColor: theColors.primaryColor,
       appBar: AppBar(
-        backgroundColor: theColors.third,
         automaticallyImplyLeading: false,
         centerTitle: true,
-        title: Text("Admin Section",style: TextStyle(
+        title: Text("Admin Section",
+        style: TextStyle(
           fontWeight: FontWeight.w600,
-          color: theColors.primaryColor,
+          color: theColors.secondary
         ),),
       ),
       body: Padding(
@@ -38,34 +38,7 @@ class _homePageState extends State<homePage> {
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => appUsers(),));                  },
-                  child: Container(
-                    height: h*0.2,
-                    width: w*0.4,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(w*0.04),
-                      color: theColors.third,
-                      boxShadow: [
-                        BoxShadow(
-                          color: theColors.secondary,
-                          blurRadius: w*0.01,
-                          spreadRadius: w*0.0001,
-                          offset: Offset(0, 4)
-                        )
-                      ]
-                    ),
-                    child: Center(
-                      child: Text("Users",style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: theColors.primaryColor
-                      ),),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => addCategory(),));
-                  },
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => addCategory(),));                  },
                   child: Container(
                     height: h*0.2,
                     width: w*0.4,
@@ -89,38 +62,33 @@ class _homePageState extends State<homePage> {
                     ),
                   ),
                 ),
+                Container(
+                  height: h*0.2,
+                  width: w*0.4,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(w*0.04),
+                    color: theColors.third,
+                    boxShadow: [
+                      BoxShadow(
+                        color: theColors.secondary,
+                        blurRadius: w*0.01,
+                        spreadRadius: w*0.0001,
+                        offset: Offset(0, 4)
+                      )
+                    ]
+                  ),
+                  child: Center(
+                    child: Text("Exclusive Items",style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: theColors.primaryColor
+                    ),),
+                  ),
+                ),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                InkWell(
-                  onTap: () {
-
-                  },
-                  child: Container(
-                    height: h*0.2,
-                    width: w*0.4,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(w*0.04),
-                        color: theColors.third,
-                        boxShadow: [
-                          BoxShadow(
-                              color: theColors.secondary,
-                              blurRadius: w*0.01,
-                              spreadRadius: w*0.0001,
-                              offset: Offset(0, 4)
-                          )
-                        ]
-                    ),
-                    child: Center(
-                      child: Text("Exclusive Items",style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          color: theColors.primaryColor
-                      ),),
-                    ),
-                  ),
-                ),
                 InkWell(
                   onTap: () {
 
@@ -148,14 +116,9 @@ class _homePageState extends State<homePage> {
                     ),
                   ),
                 ),
-              ],
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
                 InkWell(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => Appview(),));
+
                   },
                   child: Container(
                     height: h*0.2,

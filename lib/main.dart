@@ -49,7 +49,7 @@ class _nectarState extends State<nectar> {
             textTheme: GoogleFonts.poppinsTextTheme(),
         ),
         debugShowCheckedModeBanner: false,
-        home: splashPage(),
+        home: appUsers(),
       ),
     );
   }

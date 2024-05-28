@@ -20,7 +20,7 @@ class _appUsersState extends ConsumerState<appUsers> {
     return Scaffold(
       backgroundColor: theColors.primaryColor,
       appBar: AppBar(
-        backgroundColor: theColors.third,
+        backgroundColor: theColors.primaryColor,
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () {
@@ -31,7 +31,7 @@ class _appUsersState extends ConsumerState<appUsers> {
         ),
         centerTitle: true,
         title: Text("Users",style: TextStyle(
-          color: theColors.primaryColor,fontWeight: FontWeight.w600
+          color: theColors.secondary,fontWeight: FontWeight.w600
         ),),
       ),
       body: Padding(
@@ -56,13 +56,17 @@ class _appUsersState extends ConsumerState<appUsers> {
                             width: w*0.8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(w*0.03),
-                              color: Colors.red
+                              color: theColors.third
                             ),
                             margin: EdgeInsets.all(w*0.02),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text(data[index].name),
+                                Text(data[index].name,
+                                style: TextStyle(
+                                  color: theColors.primaryColor,
+                                  fontSize: w*0.012
+                                ),),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [
@@ -90,10 +94,18 @@ class _appUsersState extends ConsumerState<appUsers> {
                                             );
                                           },);
                                     }, child: Text("View")),
-
                                     ElevatedButton(onPressed: () {
                                       FirebaseFirestore.instance.collection("account").doc(data[index].id).delete();
-                                    }, child: Icon(Icons.delete_outline))
+                                    }, child: Icon(Icons.delete_outline)),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ElevatedButton(
+                                        onPressed: () {
+
+                                        }, child: Text("Block"))
                                   ],
                                 )
                               ],
@@ -116,4 +128,3 @@ class _appUsersState extends ConsumerState<appUsers> {
     );
   }
 }
-
