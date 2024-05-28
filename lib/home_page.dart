@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nectar_admin/app_administration/categories/add_category.dart';
 import 'package:nectar_admin/app_administration/categories/appView.dart';
+import 'package:nectar_admin/app_administration/exclusive/add_view_exclusive.dart';
 import 'package:nectar_admin/app_administration/users/app_users.dart';
 import 'package:nectar_admin/core/common/colors.dart';
 
@@ -96,7 +97,7 @@ class _homePageState extends State<homePage> {
               children: [
                 InkWell(
                   onTap: () {
-
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => addViewExclusivePage(),));
                   },
                   child: Container(
                     height: h*0.2,

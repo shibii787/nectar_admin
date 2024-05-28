@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:nectar_admin/app_administration/users/app_users.dart';
+import 'package:nectar_admin/home_page.dart';
 
 import 'main.dart';
 
@@ -16,6 +17,7 @@ class _homewithSidebarState extends State<homewithSidebar> {
 
   final List<Widget> _screens =[
     appUsers(),
+    homePage()
   ];
 
   int _selectedIndex = 0;
