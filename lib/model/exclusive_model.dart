@@ -4,12 +4,14 @@ class ExclusiveModel{
   final int qty;
   final String description;
   final String image;
+  final String id;
   ExclusiveModel({
     required this.itemName,
     required this.price,
     required this.qty,
     required this.description,
     required this.image,
+    required this.id
   });
   Map<String,dynamic> toMap(){
     return{
@@ -18,6 +20,8 @@ class ExclusiveModel{
       "qty" : this.qty,
       "description":this.description,
       "image" : this.image,
+      "id": this.id
+
     };
   }
   factory ExclusiveModel.fromMap(Map<String,dynamic>map){
@@ -25,8 +29,9 @@ class ExclusiveModel{
         itemName: map["itemName"] ?? "",
         price: map["price"] ?? "",
         qty: map["qty"] ?? "",
-        description: map["description"],
-        image: map["image"] ?? ""
+        description: map["description"] ?? "",
+        image: map["image"] ?? "",
+        id: map["id"] ?? ""
     );
   }
   ExclusiveModel copyWith({
@@ -34,14 +39,16 @@ class ExclusiveModel{
     double? price,
     int? qty,
     String? description,
-    String? image
+    String? image,
+    String? id
   }){
     return ExclusiveModel(
         itemName: itemName ?? this.itemName,
         price: price ?? this.price,
         qty: qty ?? this.qty,
         description: description ?? this.description,
-        image: image ?? this.image
+        image: image ?? this.image,
+        id: id ?? this.id
     );
   }
 }
