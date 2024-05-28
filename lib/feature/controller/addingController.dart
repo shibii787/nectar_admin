@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:nectar_admin/model/bestSelling_model.dart';
 import 'package:nectar_admin/model/category_model.dart';
 import 'package:nectar_admin/model/exclusive_model.dart';
 
@@ -26,6 +27,10 @@ controlCollectionFunc({required CategoryModel categoryModel,required String docI
 
 controlExclusiveFunc({required ExclusiveModel exclusiveModel}){
   _addRepository.exclusiveCollectionFunc(exclusiveModel: exclusiveModel);
+}
+
+controllBestsellingFunction({required BestSellingModel bestsellingModel}){
+  _addRepository.sellingFunction(bestSellingModel: bestsellingModel);
 }
 
 }

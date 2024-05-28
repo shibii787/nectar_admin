@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nectar_admin/app_administration/best_selling/add_bestSelling.dart';
 import 'package:nectar_admin/app_administration/categories/add_category.dart';
 import 'package:nectar_admin/app_administration/categories/appView.dart';
 import 'package:nectar_admin/app_administration/exclusive/add_view_exclusive.dart';
@@ -124,6 +125,7 @@ class _homePageState extends State<homePage> {
                 ),
                 InkWell(
                   onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => BestSelling(),));
 
                   },
                   child: Container(

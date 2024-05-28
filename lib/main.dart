@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nectar_admin/app_administration/best_selling/add_bestSelling.dart';
 import 'package:nectar_admin/app_administration/categories/app_categories.dart';
 import 'package:nectar_admin/app_intro/login_page.dart';
 import 'package:nectar_admin/home_page.dart';
@@ -49,7 +50,7 @@ class _nectarState extends State<nectar> {
             textTheme: GoogleFonts.poppinsTextTheme(),
         ),
         debugShowCheckedModeBanner: false,
-        home: splashPage(),
+        home: homePage(),
       ),
     );
   }
