@@ -40,34 +40,7 @@ class _homePageState extends State<homePage> {
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => appUsers(),));                  },
-                  child: Container(
-                    height: h*0.2,
-                    width: w*0.4,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(w*0.04),
-                      color: theColors.third,
-                      boxShadow: [
-                        BoxShadow(
-                          color: theColors.secondary,
-                          blurRadius: w*0.01,
-                          spreadRadius: w*0.0001,
-                          offset: Offset(0, 4)
-                        )
-                      ]
-                    ),
-                    child: Center(
-                      child: Text("Users",style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: theColors.primaryColor
-                      ),),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => addCategory(),));
-                  },
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => addCategory(),));                  },
                   child: Container(
                     height: h*0.2,
                     width: w*0.4,
@@ -91,11 +64,6 @@ class _homePageState extends State<homePage> {
                     ),
                   ),
                 ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
                 InkWell(
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => addViewExclusivePage(),));
@@ -104,29 +72,33 @@ class _homePageState extends State<homePage> {
                     height: h*0.2,
                     width: w*0.4,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(w*0.04),
-                        color: theColors.third,
-                        boxShadow: [
-                          BoxShadow(
-                              color: theColors.secondary,
-                              blurRadius: w*0.01,
-                              spreadRadius: w*0.0001,
-                              offset: Offset(0, 4)
-                          )
-                        ]
+                      borderRadius: BorderRadius.circular(w*0.04),
+                      color: theColors.third,
+                      boxShadow: [
+                        BoxShadow(
+                          color: theColors.secondary,
+                          blurRadius: w*0.01,
+                          spreadRadius: w*0.0001,
+                          offset: Offset(0, 4)
+                        )
+                      ]
                     ),
                     child: Center(
                       child: Text("Exclusive Items",style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          color: theColors.primaryColor
+                        fontWeight: FontWeight.w500,
+                        color: theColors.primaryColor
                       ),),
                     ),
                   ),
                 ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
                 InkWell(
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => BestSelling(),));
-
                   },
                   child: Container(
                     height: h*0.2,
@@ -151,14 +123,10 @@ class _homePageState extends State<homePage> {
                     ),
                   ),
                 ),
-              ],
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
                 InkWell(
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => Appview(),));
+
                   },
                   child: Container(
                     height: h*0.2,
