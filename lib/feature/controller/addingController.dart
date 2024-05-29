@@ -12,6 +12,8 @@ final addController = Provider((ref) => AddController(addRepository: ref.watch(a
 final streamdataProvider = StreamProvider((ref) => ref.watch(addController).streamController());
 final bestsellingProvider = StreamProvider((ref) => ref.watch(addController).bestsellingStream());
 
+final exclusiveStreamProvider = StreamProvider((ref) => ref.watch(addController).exclusiveStreamController());
+
 class AddController{
   final AddRepository _addRepository;
   AddController({
@@ -34,6 +36,10 @@ controlExclusiveFunc({required ExclusiveModel exclusiveModel}){
 
 controllBestsellingFunction({required BestSellingModel bestsellingModel}){
   _addRepository.sellingFunction(bestSellingModel: bestsellingModel);
+}
+
+Stream<List<ExclusiveModel>> exclusiveStreamController(){
+  return _addRepository.exclusiveStream();
 }
 
 }
