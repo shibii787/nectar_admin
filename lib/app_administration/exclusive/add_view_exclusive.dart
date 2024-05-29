@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -226,6 +227,80 @@ class _addViewExclusivePageState extends ConsumerState<addViewExclusivePage> {
                         children: [
                           Container(
                             color: Colors.blueGrey,
+                            child: Column(
+                              children: [
+                                ref.watch(exclusiveStreamProvider).when(
+                                    data: (data) {
+                                      return GridView.builder(
+                                        itemCount: data.length,
+                                        physics: BouncingScrollPhysics(),
+                                        shrinkWrap: true,
+                                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                            childAspectRatio: 1,
+                                            crossAxisSpacing: w*0.01,
+                                            mainAxisSpacing: w*0.01,
+                                            crossAxisCount: 4),
+                                        itemBuilder: (context, index) {
+                                          return Container(
+                                            height: h*0.8,
+                                            width: w*0.8,
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(w*0.03),
+                                                color: Colors.red
+                                            ),
+                                            margin: EdgeInsets.all(w*0.02),
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                Text(data[index].itemName),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                  children: [
+                                                    ElevatedButton(onPressed: () {
+                                                      showDialog(
+                                                        context: context,
+                                                        builder: (context) {
+                                                          return AlertDialog(
+                                                            title: Center(
+                                                                child: Text("User Details",style: TextStyle(
+                                                                    fontWeight: FontWeight.w600
+                                                                ),)),
+                                                            actions: [
+                                                              Column(
+                                                                children: [
+                                                                  // Text("Name: ${data[index].name}"),
+                                                                  // Text("Email: ${data[index].email}"),
+                                                                  // Text("Password: ${data[index].password}"),
+                                                                  // Text("Location: ${data[index].location}"),
+                                                                  // Text("PhoneNumber: ${data[index].name}"),
+                                                                  // Text("ID: ${data[index].id}"),
+                                                                ],
+                                                              )
+                                                            ],
+                                                          );
+                                                        },);
+                                                    }, child: Text("View")),
+
+                                                    ElevatedButton(onPressed: () {
+                                                      FirebaseFirestore.instance.collection("account").doc(data[index].id).delete();
+                                                    }, child: Icon(Icons.delete_outline))
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },);
+                                    },
+                                    error: (error, stackTrace) {
+                                      return Text(error.toString());
+                                    },
+                                    loading: () {
+                                      return Center(
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    },)
+                              ],
+                            ),
                           ),
                         ])
                   ]),
