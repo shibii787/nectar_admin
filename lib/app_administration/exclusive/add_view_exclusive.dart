@@ -66,7 +66,7 @@ class _addViewExclusivePageState extends ConsumerState<addViewExclusivePage> {
 
   addExclusiveListFunc(){
     ExclusiveModel exclusiveModel = ExclusiveModel(
-        itemName: itemNameController.text,
+        name: itemNameController.text,
         price: double.tryParse(itemPriceController.text)!,
         qty: int.tryParse(itemQtyController.text)!,
         description: itemDescriptionController.text,
@@ -252,7 +252,7 @@ class _addViewExclusivePageState extends ConsumerState<addViewExclusivePage> {
                                             child: Column(
                                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                               children: [
-                                                Text(data[index].itemName),
+                                                Text(data[index].name),
                                                 Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                   children: [

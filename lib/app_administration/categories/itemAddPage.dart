@@ -70,7 +70,7 @@ class _itemAddPageState extends ConsumerState<ItemAddPage> {
 
   addItemFunc(){
     CategoryModel categoryModel = CategoryModel(
-        itemName: itemnameController.text,
+        name: itemnameController.text,
         price: double.tryParse(priceController.text)!,
         qty: int.tryParse(qtyController.text)!,
         description: descriptionController.text,

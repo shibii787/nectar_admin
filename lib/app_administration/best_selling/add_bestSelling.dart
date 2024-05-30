@@ -61,7 +61,7 @@ class _BestSellingState extends ConsumerState<BestSelling> {
   }
   addBestSelling(){
     BestSellingModel bestSellingModel=BestSellingModel(
-        itemName: itemsNameController.text,
+        name: itemsNameController.text,
         price: double.tryParse(priceController.text)!,
         qty: int.tryParse(qtyController.text)!,
         description: descriptionController.text,
@@ -222,7 +222,7 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                             physics: BouncingScrollPhysics(),
                             children: [
                               ref.watch(bestsellingProvider).when(data: (data) {
-                                data.sort((a, b) => a.itemName.compareTo(b.itemName));
+                                data.sort((a, b) => a.name.compareTo(b.name));
                                 return  Expanded(
                                   child: GridView.builder(
                                     itemCount: data.length,
@@ -251,7 +251,7 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Name : ${data[index].itemName}",
+                                              "Name : ${data[index].name}",
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w600,
                                               ),

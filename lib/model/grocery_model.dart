@@ -1,21 +1,22 @@
 class GroceryModel{
-  final String itemName;
+  final String name;
   final double price;
   final int qty;
   final String description;
   final String image;
   final String id;
   GroceryModel({
-    required this.itemName,
+    required this.name,
     required this.price,
     required this.qty,
     required this.description,
     required this.image,
     required this.id
   });
-  Map<String,dynamic> toMap(){
+  Map<String,dynamic> toMap(
+      ){
     return{
-      "ItemName" : this.itemName,
+      "itemName" : this.name,
       "price" : this.price,
       "qty" : this.qty,
       "description":this.description,
@@ -26,7 +27,7 @@ class GroceryModel{
   }
   factory GroceryModel.fromMap(Map<String,dynamic>map){
     return GroceryModel(
-        itemName: map["itemName"] ?? "",
+        name: map["name"] ?? "",
         price: map["price"] ?? "",
         qty: map["qty"] ?? "",
         description: map["description"] ?? "",
@@ -35,7 +36,7 @@ class GroceryModel{
     );
   }
   GroceryModel copyWith({
-    String? itemName,
+    String? name,
     double? price,
     int? qty,
     String? description,
@@ -43,7 +44,7 @@ class GroceryModel{
     String? id
   }){
     return GroceryModel(
-        itemName: itemName ?? this.itemName,
+        name: name ?? this.name,
         price: price ?? this.price,
         qty: qty ?? this.qty,
         description: description ?? this.description,

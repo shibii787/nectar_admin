@@ -1,19 +1,19 @@
 class CategoryModel{
-  final String itemName;
+  final String name;
   final double price;
   final int qty;
   final String description;
   final String image;
   CategoryModel({
-    required this.itemName,
+    required this.name,
     required this.price,
     required this.qty,
     required this.description,
     required this.image,
-});
+  });
   Map<String,dynamic> toMap(){
     return{
-      "ItemName" : this.itemName,
+      "itemName" : this.name,
       "price" : this.price,
       "qty" : this.qty,
       "description":this.description,
@@ -22,7 +22,7 @@ class CategoryModel{
   }
   factory CategoryModel.fromMap(Map<String,dynamic>map){
     return CategoryModel(
-        itemName: map["itemName"] ?? "",
+        name: map["name"] ?? "",
         price: map["price"] ?? "",
         qty: map["qty"] ?? "",
         description: map["description"],
@@ -30,14 +30,14 @@ class CategoryModel{
     );
   }
   CategoryModel copyWith({
-    String? itemName,
+    String? name,
     double? price,
     int? qty,
     String? description,
     String? image
-}){
+  }){
     return CategoryModel(
-        itemName: itemName ?? this.itemName,
+        name: name ?? this.name,
         price: price ?? this.price,
         qty: qty ?? this.qty,
         description: description ?? this.description,
