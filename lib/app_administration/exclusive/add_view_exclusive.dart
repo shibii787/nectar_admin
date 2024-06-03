@@ -226,7 +226,6 @@ class _addViewExclusivePageState extends ConsumerState<addViewExclusivePage> {
                         physics: BouncingScrollPhysics(),
                         children: [
                           Container(
-                            color: Colors.blueGrey,
                             child: Column(
                               children: [
                                 ref.watch(exclusiveStreamProvider).when(
