@@ -13,7 +13,7 @@ class CategoryModel{
   });
   Map<String,dynamic> toMap(){
     return{
-      "itemName" : this.name,
+      "name" : this.name,
       "price" : this.price,
       "qty" : this.qty,
       "description":this.description,

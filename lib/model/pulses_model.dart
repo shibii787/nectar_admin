@@ -15,7 +15,7 @@ class PulsesModel{
   });
   Map<String,dynamic> toMap(){
     return{
-      "itemName" : this.name,
+      "name" : this.name,
       "price" : this.price,
       "qty" : this.qty,
       "description":this.description,
@@ -35,7 +35,7 @@ class PulsesModel{
     );
   }
    PulsesModel copyWith({
-    String? itemName,
+    String? name,
     double? price,
     int? qty,
     String? description,
@@ -43,7 +43,7 @@ class PulsesModel{
     String? id
   }){
     return PulsesModel(
-        name: itemName ?? this.name,
+        name: name ?? this.name,
         price: price ?? this.price,
         qty: qty ?? this.qty,
         description: description ?? this.description,

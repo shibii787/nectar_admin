@@ -100,7 +100,7 @@ class _AppviewState extends State<Appview> {
                                 height: w*0.033,
                                 width: w*0.2,
 
-                                child: Text(newDetails[index]["ItemName"],style: TextStyle(
+                                child: Text(newDetails[index]["name"],style: TextStyle(
                                   fontWeight: FontWeight.w600,
 
                                 ),),

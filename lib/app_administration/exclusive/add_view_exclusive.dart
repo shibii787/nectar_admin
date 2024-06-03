@@ -51,7 +51,7 @@ class _addViewExclusivePageState extends ConsumerState<addViewExclusivePage> {
 
   Future uploadFileToFireBase(String name, fileBytes) async {
     uploadTask = FirebaseStorage.instance
-        .ref(']exclusive/${DateTime.now().toString()}-$name')
+        .ref('exclusive/${DateTime.now().toString()}-$name')
         .putData(fileBytes, SettableMetadata(contentType: 'image/jpeg'));
     final snapshot = await uploadTask?.whenComplete(() {});
     urlDownlod = (await snapshot?.ref?.getDownloadURL())!;
@@ -215,6 +215,10 @@ class _addViewExclusivePageState extends ConsumerState<addViewExclusivePage> {
                                 ElevatedButton(
                                     onPressed: () {
                                       addExclusiveListFunc();
+                                      itemNameController.clear();
+                                      itemPriceController.clear();
+                                      itemQtyController.clear();
+                                      itemDescriptionController.clear();
                                     },
                                     child: Text("Add")),
                               ],
@@ -261,18 +265,18 @@ class _addViewExclusivePageState extends ConsumerState<addViewExclusivePage> {
                                                         builder: (context) {
                                                           return AlertDialog(
                                                             title: Center(
-                                                                child: Text("User Details",style: TextStyle(
+                                                                child: Text("Item Details",style: TextStyle(
                                                                     fontWeight: FontWeight.w600
                                                                 ),)),
                                                             actions: [
                                                               Column(
                                                                 children: [
-                                                                  // Text("Name: ${data[index].name}"),
-                                                                  // Text("Email: ${data[index].email}"),
-                                                                  // Text("Password: ${data[index].password}"),
-                                                                  // Text("Location: ${data[index].location}"),
-                                                                  // Text("PhoneNumber: ${data[index].name}"),
-                                                                  // Text("ID: ${data[index].id}"),
+                                                                  Text(data[index].image),
+                                                                  Text("Name: ${data[index].name}"),
+                                                                  Text("Email: ${data[index].price}"),
+                                                                  Text("Password: ${data[index].qty}"),
+                                                                  Text("Location: ${data[index].description}"),
+                                                                  Text("ID: ${data[index].id}"),
                                                                 ],
                                                               )
                                                             ],
@@ -281,7 +285,7 @@ class _addViewExclusivePageState extends ConsumerState<addViewExclusivePage> {
                                                     }, child: Text("View")),
 
                                                     ElevatedButton(onPressed: () {
-                                                      FirebaseFirestore.instance.collection("account").doc(data[index].id).delete();
+                                                      FirebaseFirestore.instance.collection("exclusive").doc(data[index].id).delete();
                                                     }, child: Icon(Icons.delete_outline))
                                                   ],
                                                 )
