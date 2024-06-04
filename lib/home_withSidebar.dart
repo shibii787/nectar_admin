@@ -19,7 +19,7 @@ class homewithSidebar extends StatefulWidget {
 class _homewithSidebarState extends State<homewithSidebar> {
 
   final List<Widget> _screens =[
-    userpageOnly(),
+    appUsers(),
     homePage(),
     bannerPage(),
     settingsPage()
