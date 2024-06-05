@@ -20,6 +20,7 @@ CollectionReference get _categoryItems => _firestore.collection("categories");
 
 //A funtion to add users
 CollectionReference get _stream => _firestore.collection("account");
+
 //A function to add bestSelling
 CollectionReference get _bestsell => _firestore.collection("bestSelling");
 
