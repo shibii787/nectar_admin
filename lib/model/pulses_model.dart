@@ -27,14 +27,14 @@ class PulsesModel{
   factory PulsesModel.fromMap(Map<String,dynamic>map){
     return PulsesModel(
         name: map["name"] ?? "",
-        price: map["price"] ?? "",
-        qty: map["qty"] ?? "",
+        price:  (map["price"] is num) ? (map["price"] as num).toDouble() : 0.0,
+        qty: map["qty"] ?? 0,
         description: map["description"] ?? "",
         image: map["image"] ?? "",
         id: map["id"] ?? ""
     );
   }
-   PulsesModel copyWith({
+  PulsesModel copyWith({
     String? name,
     double? price,
     int? qty,
