@@ -91,7 +91,8 @@ class _homewithSidebarState extends State<homewithSidebar> {
               ],
             ),
           ),
-          Expanded(child: _screens[_selectedIndex])
+          Expanded(
+              child: _screens[_selectedIndex])
         ],
       ),
     );

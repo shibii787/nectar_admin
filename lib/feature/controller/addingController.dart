@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nectar_admin/model/bestSelling_model.dart';
 import 'package:nectar_admin/model/category_model.dart';
 import 'package:nectar_admin/model/exclusive_model.dart';
+import 'package:nectar_admin/model/pulses_model.dart';
 
 import '../../model/user_model.dart';
 import '../repository/addingRepository.dart';
@@ -11,8 +12,8 @@ final addController = Provider((ref) => AddController(addRepository: ref.watch(a
 
 final streamdataProvider = StreamProvider((ref) => ref.watch(addController).streamController());
 final bestsellingProvider = StreamProvider((ref) => ref.watch(addController).bestsellingStream());
-
 final exclusiveStreamProvider = StreamProvider((ref) => ref.watch(addController).exclusiveStreamController());
+final pulsesStreamProvider = StreamProvider((ref) => ref.watch(addController).pulsesStreamController());
 
 class AddController{
   final AddRepository _addRepository;
@@ -38,8 +39,17 @@ controllBestsellingFunction({required BestSellingModel bestsellingModel}){
   _addRepository.sellingFunction(bestSellingModel: bestsellingModel);
 }
 
+controllPulsesFunction({required PulsesModel pulsesModel}){
+  _addRepository.addPulses(pulsesModel: pulsesModel);
+}
+
+
 Stream<List<ExclusiveModel>> exclusiveStreamController(){
   return _addRepository.exclusiveStream();
+}
+
+Stream<List<PulsesModel>> pulsesStreamController(){
+  return _addRepository.pulsesStream();
 }
 
 }
