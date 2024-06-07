@@ -28,8 +28,8 @@ class GroceryModel{
   factory GroceryModel.fromMap(Map<String,dynamic>map){
     return GroceryModel(
         name: map["name"] ?? "",
-        price: map["price"] ?? "",
-        qty: map["qty"] ?? "",
+        price:  (map["price"] is num) ? (map["price"] as num).toDouble() : 0.0,
+        qty: map["qty"] ?? 0,
         description: map["description"] ?? "",
         image: map["image"] ?? "",
         id: map["id"] ?? ""
