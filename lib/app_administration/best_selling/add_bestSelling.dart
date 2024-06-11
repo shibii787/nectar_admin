@@ -109,7 +109,7 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                                             selectFileToMessage("");
                                           },
                                           child: CircleAvatar(
-                                            radius: w*0.1,
+                                            radius: w*0.07,
                                             backgroundColor: theColors.secondary,
                                             backgroundImage: pickFile != null ? MemoryImage(Uint8List.fromList(pickFile!.bytes as List<int>)) : null,
                                           ),
@@ -120,6 +120,7 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                                       shrinkWrap: true,
                                       physics: BouncingScrollPhysics(),
                                       children: [
+                                        SizedBox(height: w*0.01,),
                                         TextFormField(
                                           controller: itemsNameController,
                                           decoration: InputDecoration(
@@ -141,6 +142,7 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                                               )
                                           ),
                                         ),
+                                        SizedBox(height: w*0.01,),
                                         TextFormField(
                                           controller: priceController,
                                           decoration: InputDecoration(
@@ -162,6 +164,7 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                                               )
                                           ),
                                         ),
+                                        SizedBox(height: w*0.01,),
                                         TextFormField(
                                           controller: qtyController,
                                           decoration: InputDecoration(
@@ -183,6 +186,7 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                                               )
                                           ),
                                         ),
+                                        SizedBox(height: w*0.01,),
                                         TextFormField(
                                           controller: descriptionController,
                                           decoration: InputDecoration(

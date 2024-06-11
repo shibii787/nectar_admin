@@ -112,7 +112,7 @@ class _addViewExclusivePageState extends ConsumerState<addViewExclusivePage> {
                                         selectFileToMessage("");
                                       },
                                       child: CircleAvatar(
-                                        radius: w * 0.1,
+                                        radius: w * 0.07,
                                         backgroundColor: theColors.secondary,
                                         backgroundImage: pickFile != null
                                             ? MemoryImage(Uint8List.fromList(
@@ -126,6 +126,7 @@ class _addViewExclusivePageState extends ConsumerState<addViewExclusivePage> {
                                   shrinkWrap: true,
                                   physics: BouncingScrollPhysics(),
                                   children: [
+                                    SizedBox(height: w*0.01,),
                                     TextFormField(
                                       controller: itemNameController,
                                       decoration: InputDecoration(
@@ -147,6 +148,7 @@ class _addViewExclusivePageState extends ConsumerState<addViewExclusivePage> {
                                               borderSide: BorderSide(
                                                   color: theColors.third))),
                                     ),
+                                    SizedBox(height: w*0.01,),
                                     TextFormField(
                                       controller: itemPriceController,
                                       decoration: InputDecoration(
@@ -168,6 +170,7 @@ class _addViewExclusivePageState extends ConsumerState<addViewExclusivePage> {
                                               borderSide: BorderSide(
                                                   color: theColors.third))),
                                     ),
+                                    SizedBox(height: w*0.01,),
                                     TextFormField(
                                       controller: itemQtyController,
                                       decoration: InputDecoration(
@@ -189,6 +192,7 @@ class _addViewExclusivePageState extends ConsumerState<addViewExclusivePage> {
                                               borderSide: BorderSide(
                                                   color: theColors.third))),
                                     ),
+                                    SizedBox(height: w*0.01,),
                                     TextFormField(
                                       controller: itemDescriptionController,
                                       decoration: InputDecoration(

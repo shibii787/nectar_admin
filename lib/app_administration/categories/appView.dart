@@ -54,7 +54,6 @@ class _AppviewState extends State<Appview> {
         ),),
       ),
       body: Column(
-
         children: [
           StreamBuilder(
              // stream: FirebaseFirestore.instance.collection("categories").doc().collection("subItems").snapshots(),
@@ -99,7 +98,6 @@ class _AppviewState extends State<Appview> {
                               Container(
                                 height: w*0.033,
                                 width: w*0.2,
-
                                 child: Text(newDetails[index]["name"],style: TextStyle(
                                   fontWeight: FontWeight.w600,
 
