@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nectar_admin/app_administration/categories/app_categories.dart';
 import 'package:nectar_admin/app_intro/login_page.dart';
-import 'package:nectar_admin/home_page.dart';
+import 'package:nectar_admin/app_administration/home_page.dart';
 import 'package:nectar_admin/app_administration/users/app_users.dart';
 import 'package:nectar_admin/app_intro/splash.dart';
 import 'package:nectar_admin/home_withSidebar.dart';

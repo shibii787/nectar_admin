@@ -3,7 +3,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nectar_admin/app_administration/categories/appView.dart';
+import 'package:nectar_admin/app_administration/categories/itemViewPage.dart';
 
 import 'package:nectar_admin/core/common/colors.dart';
 import 'package:nectar_admin/feature/controller/addingController.dart';
@@ -226,7 +226,10 @@ class _itemAddPageState extends ConsumerState<ItemAddPage> {
                       addItemFunc();
                     }, child: Text("SUBMIT",)),
                 ElevatedButton(onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Appview(),));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => itemViewPage(
+                    title: widget.categoryName,
+                    id: widget.categoryID,
+                  ),));
                 },
                     child: Text("Items")
                 )
