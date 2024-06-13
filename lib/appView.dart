@@ -4,7 +4,7 @@ import 'package:nectar_admin/app_administration/categories/app_categories.dart';
 import 'package:nectar_admin/core/common/colors.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../main.dart';
+import 'main.dart';
 
 class Appview extends StatefulWidget {
 

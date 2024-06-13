@@ -2,10 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:nectar_admin/app_administration/users/app_users.dart';
-import 'package:nectar_admin/home_page.dart';
-import 'package:nectar_admin/banner_page.dart';
-import 'package:nectar_admin/settings_page.dart';
-import 'package:nectar_admin/user_only.dart';
+import 'package:nectar_admin/app_administration/home_page.dart';
+import 'package:nectar_admin/app_administration/banner_page.dart';
+import 'package:nectar_admin/app_administration/settings_page.dart';
 
 import 'main.dart';
 

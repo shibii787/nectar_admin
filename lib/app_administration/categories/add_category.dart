@@ -4,21 +4,25 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nectar_admin/app_administration/categories/app_categories.dart';
 import 'package:nectar_admin/core/common/colors.dart';
+import 'package:nectar_admin/feature/controller/addingController.dart';
+import 'package:nectar_admin/model/addCategory_model.dart';
 
 import '../../main.dart';
 
-class addCategory extends StatefulWidget {
+class addCategory extends ConsumerStatefulWidget {
   const addCategory({super.key});
 
   @override
-  State<addCategory> createState() => _addCategoryState();
+  ConsumerState<addCategory> createState() => _addCategoryState();
 }
 
-class _addCategoryState extends State<addCategory> {
+class _addCategoryState extends ConsumerState<addCategory> {
 
-  TextEditingController category = TextEditingController();
+  TextEditingController categoryController = TextEditingController();
+
   PlatformFile? pickFile;
   UploadTask? uploadTask;
   String? urlDownlod;
@@ -40,7 +44,7 @@ class _addCategoryState extends State<addCategory> {
   }
   Future uploadFileToFireBase(String name, fileBytes) async {
     uploadTask = FirebaseStorage.instance
-        .ref('items/${DateTime.now().toString()}-$name')
+        .ref('categories/${DateTime.now().toString()}-$name')
         .putData(fileBytes,SettableMetadata(
         contentType: 'image/jpeg'
     ));
@@ -53,6 +57,16 @@ class _addCategoryState extends State<addCategory> {
     // ignore: use_build_context_synchronously
     // ScaffoldMessenger.of(context).clearSnackBars();
     setState(() {});
+  }
+
+  addCategoryFunc(){
+    AddCategoryModel addCategoryModel = AddCategoryModel(
+        name: categoryController.text,
+        image: urlDownlod ?? "",
+        time: Timestamp.now(),
+        id: ""
+    );
+    ref.watch(addController).addCategoryControlFunction(addCategoryModel: addCategoryModel);
   }
 
   @override
@@ -107,7 +121,7 @@ class _addCategoryState extends State<addCategory> {
             ),
             Center(
               child: TextFormField(
-                controller: category,
+                controller: categoryController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(w*0.05)
@@ -130,15 +144,19 @@ class _addCategoryState extends State<addCategory> {
             ElevatedButton(
                 onPressed: () {
 
-                  FirebaseFirestore.instance.collection("categories").add({
-                    "item" : category.text,
-                    "id":"",
-                    "time":Timestamp.now(),
-                    "image": urlDownlod
-                  }).then((value) => value.update({
-                    "id" : value.id
-                  }));
-                  category.clear();
+                  // FirebaseFirestore.instance.collection("categories").add({
+                  //   "item" : categoryController.text,
+                  //   "id":"",
+                  //   "time":Timestamp.now(),
+                  //   "image": urlDownlod
+                  // }).then((value) => value.update({
+                  //   "id" : value.id
+                  // }));
+
+                  addCategoryFunc();
+
+                  categoryController.clear();
+
                 }, child: Text("Add")),
 
             ElevatedButton(onPressed: () {

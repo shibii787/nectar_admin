@@ -81,6 +81,9 @@ class _addViewExclusivePageState extends ConsumerState<addViewExclusivePage> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
+            title: Text("Exclusive List",style: TextStyle(
+                fontWeight: FontWeight.w600
+            ),),
             bottom: TabBar(tabs: [
               Tab(
                 text: "Add",

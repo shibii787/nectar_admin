@@ -68,6 +68,10 @@ class _BestSellingState extends ConsumerState<BestSelling> {
         image: urlDownlod??"",
         id: "");
     ref.watch(addController).controllBestsellingFunction(bestsellingModel: bestSellingModel);
+    itemsNameController.clear();
+    priceController.clear();
+    qtyController.clear();
+    descriptionController.clear();
   }
 
   @override
@@ -76,6 +80,9 @@ class _BestSellingState extends ConsumerState<BestSelling> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
+            title: Text("Best Selling List",style: TextStyle(
+              fontWeight: FontWeight.w600
+            ),),
             bottom: TabBar(
                 tabs: [
                   Tab(
@@ -227,62 +234,65 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                             children: [
                               ref.watch(bestsellingProvider).when(data: (data) {
                                 data.sort((a, b) => a.name.compareTo(b.name));
-                                return  Expanded(
-                                  child: GridView.builder(
-                                    itemCount: data.length,
-                                    physics: BouncingScrollPhysics(),
-                                    scrollDirection: Axis.vertical,
-                                    shrinkWrap: true,
-                                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 3,
-                                      crossAxisSpacing: w * 0.03,
-                                      mainAxisSpacing: w * 0.03,
+                                return GridView.builder(
+                                  itemCount: data.length,
+                                  physics: BouncingScrollPhysics(),
+                                  shrinkWrap: true,
+                                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                       childAspectRatio: 1,
-                                    ),
-                                    itemBuilder: (context, index) {
-                                      return Container(
-                                        height: w*0.55,
-                                        width: w*0.35,
-                                        padding: EdgeInsets.all(w*0.03),
-                                        margin: EdgeInsets.all(w*0.03),
-                                        decoration: BoxDecoration(
-                                          color: theColors.third.withOpacity(0.2),
-                                          borderRadius: BorderRadius.circular(w * 0.05),
-                                          border: Border.all(width: w * 0.002, color: theColors.third),
-                                        ),
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "Name : ${data[index].name}",
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                            Text(
-                                              "₹${data[index].price}",
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                            Text(
-                                              "Quantity : ${data[index].qty}",
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                            Text(
-                                              "Description : ${data[index].description}",
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    },),
-                                );
+                                      crossAxisSpacing: w*0.01,
+                                      mainAxisSpacing: w*0.01,
+                                      crossAxisCount: 4),
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                      height: h*0.8,
+                                      width: w*0.8,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(w*0.03),
+                                          color: Colors.red
+                                      ),
+                                      margin: EdgeInsets.all(w*0.02),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Text(data[index].name),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              ElevatedButton(onPressed: () {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return AlertDialog(
+                                                      title: Center(
+                                                          child: Text("Item Details",style: TextStyle(
+                                                              fontWeight: FontWeight.w600
+                                                          ),)),
+                                                      actions: [
+                                                        Column(
+                                                          children: [
+                                                            Text(data[index].image),
+                                                            Text("Name: ${data[index].name}"),
+                                                            Text("Email: ${data[index].price}"),
+                                                            Text("Password: ${data[index].qty}"),
+                                                            Text("Location: ${data[index].description}"),
+                                                            Text("ID: ${data[index].id}"),
+                                                          ],
+                                                        )
+                                                      ],
+                                                    );
+                                                  },);
+                                              }, child: Text("View")),
+
+                                              ElevatedButton(onPressed: () {
+                                                FirebaseFirestore.instance.collection("exclusive").doc(data[index].id).delete();
+                                              }, child: Icon(Icons.delete_outline))
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    );
+                                  },);
                               }, error:  (error, stackTrace) {
                                 return Text(error.toString());
                               },
