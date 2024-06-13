@@ -69,7 +69,7 @@ exclusiveCollectionFunc({required ExclusiveModel exclusiveModel}){
 }
 
 // A stream to show added categories
-  Stream<List<AddCategoryModel>> addCategoryStream(){
+  Stream<List<AddCategoryModel>> addCategoryStreaM(){
     return _categoryItems.snapshots().map((event) => event.docs.map((e) => AddCategoryModel.fromMap(e.data() as Map<String,dynamic>)).toList());
   }
 

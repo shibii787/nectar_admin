@@ -48,7 +48,7 @@ controlCollectionFunc({required CategoryModel categoryModel,required String docI
 
 // To show addCategory list
   Stream<List<AddCategoryModel>> addCategoryStreamController(){
-  return _addRepository.addCategoryStream();
+  return _addRepository.addCategoryStreaM();
   }
 
 //A stream to show subItem collection
