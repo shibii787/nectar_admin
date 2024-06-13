@@ -78,44 +78,43 @@ class _itemViewPageState extends ConsumerState<itemViewPage> {
                             Container(
                                 height: w*0.1,
                                 width: w*0.1,
-                                child: Image.network(newDetails[index]["image"]),
+                                child: Image(image: NetworkImage((newDetails[index]["image"])),
+                                errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                                  return Container(
+                                    height: w*0.2,
+                                    width: w*0.4,
+                                    decoration: BoxDecoration(
+                                        color: theColors.primaryColor,
+                                        borderRadius: BorderRadius.circular(w*0.03)
+                                    ),
+                                    child: Center(
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Image not found',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              color: theColors.secondary,
+                                              fontWeight: FontWeight.bold,
 
-                                // errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-                                //   return Container(
-                                //     height: w*0.2,
-                                //     width: w*0.4,
-                                //     decoration: BoxDecoration(
-                                //         color: theColors.primaryColor,
-                                //         borderRadius: BorderRadius.circular(w*0.03)
-                                //     ),
-                                //     child: Center(
-                                //       child: Column(
-                                //         mainAxisAlignment: MainAxisAlignment.center,
-                                //         children: [
-                                //           Text(
-                                //             'Image not found',
-                                //             style: TextStyle(
-                                //               fontSize: 14,
-                                //               color: theColors.secondary,
-                                //               fontWeight: FontWeight.bold,
-                                //
-                                //             ),
-                                //           ),
-                                //           Text(
-                                //             '!Check your internet connection',
-                                //             textAlign: TextAlign.center,
-                                //             style: TextStyle(
-                                //               fontSize: 8,
-                                //               color: theColors.secondary,
-                                //               fontWeight: FontWeight.bold,
-                                //
-                                //             ),
-                                //           ),
-                                //         ],
-                                //       ),
-                                //     ),
-                                //   );}
+                                            ),
+                                          ),
+                                          Text(
+                                            '!Check your internet connection',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontSize: 8,
+                                              color: theColors.secondary,
+                                              fontWeight: FontWeight.bold,
 
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );}
+                        ),
                             ),
                             Text(newDetails[index]["name"],style: TextStyle(
                               fontWeight: FontWeight.w600,
