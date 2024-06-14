@@ -63,16 +63,16 @@ class _BestSellingState extends ConsumerState<Pulses> {
     // ScaffoldMessenger.of(context).clearSnackBars();
     setState(() {});
   }
- // addPulses(){
- //    PulsesModel pulsesModel = PulsesModel(
- //        name: itemsNameController.text,
- //        price: double.tryParse(priceController.text)!,
- //        qty: int.tryParse(qtyController.text)!,
- //        description: descriptionController.text,
- //        image: urlDownlod ?? "",
- //        id: "");
- //    ref.watch(addController).controllPulsesFunction(pulsesModel: pulsesModel);
- // }
+ addPulses(){
+    PulsesModel pulsesModel = PulsesModel(
+        name: itemsNameController.text,
+        price: double.tryParse(priceController.text)!,
+        qty: int.tryParse(qtyController.text)!,
+        description: descriptionController.text,
+        image: urlDownlod ?? "",
+        id: "");
+    ref.watch(addController).controlPulsesFunction(pulsesModel: pulsesModel);
+ }
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +117,7 @@ class _BestSellingState extends ConsumerState<Pulses> {
                                             selectFileToMessage("");
                                           },
                                           child: CircleAvatar(
-                                            radius: w*0.06,
+                                            radius: w*0.065,
                                             backgroundColor: theColors.secondary,
                                             backgroundImage: pickFile != null ? MemoryImage(Uint8List.fromList(pickFile!.bytes as List<int>)) : null,
                                           ),

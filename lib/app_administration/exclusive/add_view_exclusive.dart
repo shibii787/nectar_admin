@@ -115,7 +115,7 @@ class _addViewExclusivePageState extends ConsumerState<addViewExclusivePage> {
                                         selectFileToMessage("");
                                       },
                                       child: CircleAvatar(
-                                        radius: w * 0.07,
+                                        radius: w * 0.065,
                                         backgroundColor: theColors.secondary,
                                         backgroundImage: pickFile != null
                                             ? MemoryImage(Uint8List.fromList(

@@ -103,7 +103,7 @@ class _addGroceriesState extends ConsumerState<addGroceries> {
                                           selectFileToMessage("");
                                         },
                                         child: CircleAvatar(
-                                          radius: w*0.06,
+                                          radius: w*0.065,
                                           backgroundColor: theColors.secondary,
                                           backgroundImage: pickFile != null ? MemoryImage(Uint8List.fromList(pickFile!.bytes as List<int>)) : null,
                                         ),

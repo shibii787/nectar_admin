@@ -118,7 +118,7 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                                             selectFileToMessage("");
                                           },
                                           child: CircleAvatar(
-                                            radius: w*0.06,
+                                            radius: w*0.065,
                                             backgroundColor: theColors.secondary,
                                             backgroundImage: pickFile != null ? MemoryImage(Uint8List.fromList(pickFile!.bytes as List<int>)) : null,
                                           ),
@@ -220,7 +220,6 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                                         SizedBox(height: w*0.01,)
                                       ],
                                     ),
-                                    SizedBox(height: w*0.02),
                                     ElevatedButton(
                                         onPressed: () {
                                           addBestSelling();
