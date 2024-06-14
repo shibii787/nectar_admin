@@ -4,6 +4,7 @@ import 'package:nectar_admin/model/bestSelling_model.dart';
 import 'package:nectar_admin/model/category_model.dart';
 import 'package:nectar_admin/model/exclusive_model.dart';
 
+import '../../model/pulses_model.dart';
 import '../../model/user_model.dart';
 import '../repository/addingRepository.dart';
 
@@ -24,6 +25,9 @@ final bestsellingProvider = StreamProvider((ref) => ref.watch(addController).bes
 
 // Provider funtion for exclusive list
 final exclusiveStreamProvider = StreamProvider((ref) => ref.watch(addController).exclusiveStreamController());
+
+// provider function for pulses list
+final pulsesprovider = StreamProvider((ref) => ref.watch(addController).pulsesStreamController());
 
 class AddController{
   final AddRepository _addRepository;
@@ -70,10 +74,24 @@ controlExclusiveFunc({required ExclusiveModel exclusiveModel}){
 controllBestsellingFunction({required BestSellingModel bestsellingModel}){
   _addRepository.sellingFunction(bestSellingModel: bestsellingModel);
 }
+// A function to show pulses
+  controlPulsesFunction({required PulsesModel pulsesModel}){
+  _addRepository.pulsesfunction(pulsesModel: pulsesModel);
+  }
+
+//A function to show  pulses list
+//   controllPulsesFunction(){
+//   _addRepository.
+//   }
+
 
 // A stream to show excclusive list
 Stream<List<ExclusiveModel>> exclusiveStreamController(){
   return _addRepository.exclusiveStream();
+}
+// A Stream to show pulses list
+Stream<List<PulsesModel>> pulsesStreamController(){
+  return _addRepository.pulsesstream();
 }
 
 }
