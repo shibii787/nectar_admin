@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nectar_admin/core/providers/firebase_providers.dart';
@@ -7,6 +9,7 @@ import 'package:nectar_admin/model/exclusive_model.dart';
 import 'package:nectar_admin/model/user_model.dart';
 
 import '../../model/bestSelling_model.dart';
+import '../../model/pulses_model.dart';
 
 final addRepository = Provider((ref) => AddRepository(firestore: ref.watch(firestoreProvider)));
 
@@ -30,6 +33,9 @@ CollectionReference get _bestsell => _firestore.collection("bestSelling");
 
 //A function to add exclisive list
 CollectionReference get _exclusive => _firestore.collection("exclusive");
+
+// A function to add pulses list
+  CollectionReference get _pulses => _firestore.collection("pulses");
 
 // A Collection to show Categories
   categoryFunction({required AddCategoryModel addCategoryModel}){
@@ -62,6 +68,16 @@ exclusiveCollectionFunc({required ExclusiveModel exclusiveModel}){
     });
   });
   }
+  
+// A function that add pulses
+pulsesfunction({required PulsesModel pulsesModel}){
+    _pulses.add(pulsesModel.toMap()).then((value){
+      value.update({
+        "id":value.id
+      });
+    });
+   
+}  
 
 // A stream to show users
   Stream<List<UserModel>> stream(){
@@ -87,5 +103,8 @@ Stream<List<ExclusiveModel>> exclusiveStream(){
 Stream<List<BestSellingModel>>bestsellingStream(){
   return _bestsell.snapshots().map((event)=>event.docs.map((e) => BestSellingModel.fromMap(e.data()as Map<String,dynamic>)).toList());
 }
-
+//A stream to show pulses
+Stream<List<PulsesModel>>pulsesstream(){
+    return _pulses.snapshots().map((event) => event.docs.map((e) => PulsesModel.fromMap(e.data()as Map<String,dynamic>)).toList());
+}
 }
