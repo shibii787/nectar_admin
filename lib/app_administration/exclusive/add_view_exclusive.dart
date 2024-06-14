@@ -217,6 +217,7 @@ class _addViewExclusivePageState extends ConsumerState<addViewExclusivePage> {
                                               borderSide: BorderSide(
                                                   color: theColors.third))),
                                     ),
+                                    SizedBox(height: w*0.01,)
                                   ],
                                 ),
                                 ElevatedButton(

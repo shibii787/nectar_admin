@@ -2,8 +2,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nectar_admin/app_administration/pulses/add_pulses.dart';
+import 'package:nectar_admin/app_administration/best_selling/add_bestSelling.dart';
+import 'package:nectar_admin/app_administration/categories/app_categories.dart';
+import 'package:nectar_admin/app_administration/exclusive/add_view_exclusive.dart';
+import 'package:nectar_admin/app_administration/pulses/pulsess.dart';
+import 'package:nectar_admin/app_intro/login_page.dart';
+import 'package:nectar_admin/app_administration/home_page.dart';
+import 'package:nectar_admin/app_administration/users/app_users.dart';
 import 'package:nectar_admin/app_intro/splash.dart';
+import 'package:nectar_admin/home_withSidebar.dart';
+import 'package:sidebarx/sidebarx.dart';
 
 
 import 'firebase_options.dart';
@@ -44,7 +52,7 @@ class _nectarState extends State<nectar> {
             textTheme: GoogleFonts.poppinsTextTheme(),
         ),
         debugShowCheckedModeBanner: false,
-        home: addViewPulses(),
+        home: splashPage(),
       ),
     );
   }

@@ -6,6 +6,7 @@ import 'package:nectar_admin/core/providers/firebase_providers.dart';
 import 'package:nectar_admin/model/addCategory_model.dart';
 import 'package:nectar_admin/model/category_model.dart';
 import 'package:nectar_admin/model/exclusive_model.dart';
+import 'package:nectar_admin/model/grocery_model.dart';
 import 'package:nectar_admin/model/user_model.dart';
 
 import '../../model/bestSelling_model.dart';
@@ -36,6 +37,9 @@ CollectionReference get _exclusive => _firestore.collection("exclusive");
 
 // A function to add pulses list
   CollectionReference get _pulses => _firestore.collection("pulses");
+
+//   A funtion to add groceries list
+  CollectionReference get _groceries => _firestore.collection("groceries");
 
 // A Collection to show Categories
   categoryFunction({required AddCategoryModel addCategoryModel}){
@@ -76,8 +80,17 @@ pulsesfunction({required PulsesModel pulsesModel}){
         "id":value.id
       });
     });
-   
-}  
+}
+
+// A funtion that add groceries
+  groceriesFunction({required GroceryModel groceryModel}){
+    _groceries.add(groceryModel.toMap()).then((value){
+      value.update({
+        "id" : value.id
+      });
+    });
+  }
+
 
 // A stream to show users
   Stream<List<UserModel>> stream(){
@@ -107,4 +120,10 @@ Stream<List<BestSellingModel>>bestsellingStream(){
 Stream<List<PulsesModel>>pulsesstream(){
     return _pulses.snapshots().map((event) => event.docs.map((e) => PulsesModel.fromMap(e.data()as Map<String,dynamic>)).toList());
 }
+
+// A stream to show groceries
+Stream<List<GroceryModel>>addgroceriesStream(){
+    return _groceries.snapshots().map((event) => event.docs.map((e) => GroceryModel.fromMap(e.data()as Map<String,dynamic>)).toList());
+}
+
 }

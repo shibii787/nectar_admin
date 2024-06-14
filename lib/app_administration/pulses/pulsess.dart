@@ -63,16 +63,16 @@ class _BestSellingState extends ConsumerState<Pulses> {
     // ScaffoldMessenger.of(context).clearSnackBars();
     setState(() {});
   }
- addPulses(){
-    PulsesModel pulsesModel = PulsesModel(
-        name: itemsNameController.text,
-        price: double.tryParse(priceController.text)!,
-        qty: int.tryParse(qtyController.text)!,
-        description: descriptionController.text,
-        image: urlDownlod ?? "",
-        id: "");
-    ref.watch(addController).controllPulsesFunction(pulsesModel: pulsesModel);
- }
+ // addPulses(){
+ //    PulsesModel pulsesModel = PulsesModel(
+ //        name: itemsNameController.text,
+ //        price: double.tryParse(priceController.text)!,
+ //        qty: int.tryParse(qtyController.text)!,
+ //        description: descriptionController.text,
+ //        image: urlDownlod ?? "",
+ //        id: "");
+ //    ref.watch(addController).controllPulsesFunction(pulsesModel: pulsesModel);
+ // }
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +80,10 @@ class _BestSellingState extends ConsumerState<Pulses> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
+            title: Text("Pulses",
+            style: TextStyle(
+              fontWeight: FontWeight.w600
+            ),),
             bottom: TabBar(
                 tabs: [
                   Tab(
@@ -217,12 +221,13 @@ class _BestSellingState extends ConsumerState<Pulses> {
                                                 )
                                             ),
                                           ),
+                                          SizedBox(height: w*0.01,)
                                         ],
                                       ),
                                     ),
                                     ElevatedButton(
                                         onPressed: () {
-                                          addPulses();
+                                          // addPulses();
                                         }, child: Text("Add")),
 
                                   ],
@@ -235,7 +240,7 @@ class _BestSellingState extends ConsumerState<Pulses> {
                             shrinkWrap: true,
                             physics: BouncingScrollPhysics(),
                             children: [
-                              ref.watch(pulsesStreamProvider).when(data: (data) {
+                              ref.watch(pulsesprovider).when(data: (data) {
                                 data.sort((a, b) => a.name.compareTo(b.name));
                                 return  GridView.builder(
                                   itemCount: data.length,

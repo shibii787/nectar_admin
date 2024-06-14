@@ -3,6 +3,7 @@ import 'package:nectar_admin/model/addCategory_model.dart';
 import 'package:nectar_admin/model/bestSelling_model.dart';
 import 'package:nectar_admin/model/category_model.dart';
 import 'package:nectar_admin/model/exclusive_model.dart';
+import 'package:nectar_admin/model/grocery_model.dart';
 
 import '../../model/pulses_model.dart';
 import '../../model/user_model.dart';
@@ -29,6 +30,10 @@ final exclusiveStreamProvider = StreamProvider((ref) => ref.watch(addController)
 // provider function for pulses list
 final pulsesprovider = StreamProvider((ref) => ref.watch(addController).pulsesStreamController());
 
+// provider function for groceries list
+final groceriesstreamProvider = StreamProvider((ref) => ref.watch(addController).groceriesStreamController());
+
+
 class AddController{
   final AddRepository _addRepository;
   AddController({
@@ -45,10 +50,21 @@ controlCollectionFunc({required CategoryModel categoryModel,required String docI
   _addRepository.collectionFunction(categoryModel: categoryModel,docId: docIdss);
 }
 
+// A funtion to add groceries
+addGroceriesControll({required GroceryModel groceryModel}){
+  _addRepository.groceriesFunction(groceryModel: groceryModel);
+}
+
 // A stream to show users
   Stream<List<UserModel>> streamController(){
   return _addRepository.stream();
 }
+
+//A stream to grocery list
+ Stream<List<GroceryModel>>groceriesStreamController(){
+  return _addRepository.addgroceriesStream();
+ }
+
 
 // To show addCategory list
   Stream<List<AddCategoryModel>> addCategoryStreamController(){
@@ -93,5 +109,7 @@ Stream<List<ExclusiveModel>> exclusiveStreamController(){
 Stream<List<PulsesModel>> pulsesStreamController(){
   return _addRepository.pulsesstream();
 }
+
+
 
 }
