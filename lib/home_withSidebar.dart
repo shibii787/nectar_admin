@@ -86,7 +86,7 @@ class _homewithSidebarState extends State<homewithSidebar> {
               children: [
                 SizedBox(height: w*0.23,),
                 Icon(Icons.logout,
-                size: w*0.018,)
+                size: w*0.030,)
               ],
             ),
           ),
