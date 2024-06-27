@@ -18,6 +18,7 @@ class _categoriesState extends ConsumerState<categories> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: theColors.sixth,
       appBar: AppBar(
         backgroundColor: theColors.third,
         centerTitle: true,

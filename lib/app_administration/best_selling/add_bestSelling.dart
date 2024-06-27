@@ -29,6 +29,7 @@ class _BestSellingState extends ConsumerState<BestSelling> {
   PlatformFile? pickFile;
   UploadTask? uploadTask;
   String? urlDownlod;
+
   Future selectFileToMessage(String name) async {
     final result = await FilePicker.platform.pickFiles();
     if (result == null) return;
@@ -81,6 +82,7 @@ class _BestSellingState extends ConsumerState<BestSelling> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
+          backgroundColor: theColors.sixth,
           appBar: AppBar(
             title: Text("Best Selling List",style: TextStyle(
               fontWeight: FontWeight.w600
@@ -296,7 +298,8 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                                       ),
                                     );
                                   },);
-                              }, error:  (error, stackTrace) {
+                              },
+                                error:  (error, stackTrace) {
                                 return Text(error.toString());
                               },
                                 loading:  () {

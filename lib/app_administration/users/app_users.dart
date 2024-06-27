@@ -17,21 +17,21 @@ class _appUsersState extends ConsumerState<appUsers> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MediaQuery.of(context).size.width > 840 ? Scaffold(
       backgroundColor: theColors.primaryColor,
       appBar: AppBar(
-        backgroundColor: theColors.primaryColor,
+        backgroundColor: theColors.third,
         automaticallyImplyLeading: false,
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Icon(Icons.arrow_back,
-              color: theColors.primaryColor),
-        ),
+        // leading: InkWell(
+        //   onTap: () {
+        //     Navigator.pop(context);
+        //   },
+        //   child: Icon(Icons.arrow_back,
+        //       color: theColors.primaryColor),
+        // ),
         centerTitle: true,
         title: Text("Users",style: TextStyle(
-          color: theColors.secondary,fontWeight: FontWeight.w600
+          color: theColors.primaryColor,fontWeight: FontWeight.w600
         ),),
       ),
       body: Padding(
@@ -125,6 +125,6 @@ class _appUsersState extends ConsumerState<appUsers> {
           ],
         ),
       ),
-    );
+    ) : CircularProgressIndicator();
   }
 }

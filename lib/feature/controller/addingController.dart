@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nectar_admin/model/addCategory_model.dart';
+import 'package:nectar_admin/model/adminModel.dart';
 import 'package:nectar_admin/model/bestSelling_model.dart';
 import 'package:nectar_admin/model/category_model.dart';
 import 'package:nectar_admin/model/exclusive_model.dart';
@@ -11,6 +12,9 @@ import '../repository/addingRepository.dart';
 
 
 final addController = Provider((ref) => AddController(addRepository: ref.watch(addRepository)));
+
+// Provider finction for admins
+final adminStreamProvider = StreamProvider((ref) => ref.watch(addController).adminStreamController());
 
 // Provider funtion for users
 final streamdataProvider = StreamProvider((ref) => ref.watch(addController).streamController());
@@ -40,6 +44,11 @@ class AddController{
     required AddRepository addRepository
 }) : _addRepository = addRepository;
 
+//A funtion to add admins
+addAdmins({required AdminModel adminModel, required String docId}){
+  _addRepository.adminFunc(adminModel: adminModel,doCid: docId);
+}
+
 // A funtion to add AddCategory model
 addCategoryControlFunction({required AddCategoryModel addCategoryModel}){
   _addRepository.categoryFunction(addCategoryModel: addCategoryModel);
@@ -54,6 +63,11 @@ controlCollectionFunc({required CategoryModel categoryModel,required String docI
 addGroceriesControll({required GroceryModel groceryModel}){
   _addRepository.groceriesFunction(groceryModel: groceryModel);
 }
+
+// A stream to show admins
+  Stream<List<AdminModel>> adminStreamController(){
+  return _addRepository.adminStream();
+  }
 
 // A stream to show users
   Stream<List<UserModel>> streamController(){

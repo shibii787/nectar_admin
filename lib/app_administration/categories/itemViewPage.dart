@@ -22,6 +22,7 @@ class _itemViewPageState extends ConsumerState<itemViewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: theColors.sixth,
       appBar: AppBar(
         backgroundColor: theColors.third,
         automaticallyImplyLeading: false,

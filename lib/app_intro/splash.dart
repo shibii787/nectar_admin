@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nectar_admin/app_administration/home_page.dart';
 import 'package:nectar_admin/core/common/colors.dart';
+import 'package:nectar_admin/home_withSidebar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../main.dart';
 import 'login_page.dart';
@@ -14,11 +16,20 @@ class splashPage extends StatefulWidget {
 
 class _splashPageState extends State<splashPage> {
 
+  bool loggedIn = false;
+  getLoggedIn() async {
+    SharedPreferences login =  await SharedPreferences.getInstance();
+    loggedIn = login.getBool("loggedIn") ?? false;
+
+    await Future.delayed(const Duration(
+        seconds: 3
+    )).then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => loggedIn==true? homewithSidebar() : loginPage(),)));
+
+  }
+
   @override
   void initState() {
-    Future.delayed(const Duration(
-      seconds: 3
-    )).then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => loginPage(),)));
+    getLoggedIn();
     // TODO: implement initState
     super.initState();
   }

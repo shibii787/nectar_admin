@@ -1,9 +1,8 @@
-import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nectar_admin/core/providers/firebase_providers.dart';
 import 'package:nectar_admin/model/addCategory_model.dart';
+import 'package:nectar_admin/model/adminModel.dart';
 import 'package:nectar_admin/model/category_model.dart';
 import 'package:nectar_admin/model/exclusive_model.dart';
 import 'package:nectar_admin/model/grocery_model.dart';
@@ -19,6 +18,9 @@ class AddRepository{
   AddRepository({
    required FirebaseFirestore  firestore
 }) : _firestore = firestore;
+
+// A function for Admin Users
+  CollectionReference get _admins => _firestore.collection("admins");
 
 //A function to add category collection
 CollectionReference get _categoryItems => _firestore.collection("categories");
@@ -41,7 +43,13 @@ CollectionReference get _exclusive => _firestore.collection("exclusive");
 //   A funtion to add groceries list
   CollectionReference get _groceries => _firestore.collection("groceries");
 
-// A Collection to show Categories
+// To add Admins
+adminFunc({required AdminModel adminModel, required String doCid}){
+//_admins.add(adminModel.tomap());
+_admins.doc(doCid).set(adminModel.tomap());
+}
+
+// A Collection to  Categories
   categoryFunction({required AddCategoryModel addCategoryModel}){
     _categoryItems.add(addCategoryModel.toMap()).then((value) {
       value.update({
@@ -91,6 +99,11 @@ pulsesfunction({required PulsesModel pulsesModel}){
     });
   }
 
+
+//To stream to show admins
+  Stream<List<AdminModel>> adminStream(){
+    return _admins.snapshots().map((event) => event.docs.map((e) => AdminModel.fromMap(e.data() as Map<String,dynamic>)).toList());
+  }
 
 // A stream to show users
   Stream<List<UserModel>> stream(){

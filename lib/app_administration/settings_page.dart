@@ -15,14 +15,15 @@ class _settingsPageState extends State<settingsPage> {
     return Scaffold(
       backgroundColor: theColors.primaryColor,
       appBar: AppBar(
+        backgroundColor: theColors.third,
         automaticallyImplyLeading: false,
         centerTitle: true,
-        title: Text("Admin Section",
+        title: Text("Settings",
           style: TextStyle(
               fontWeight: FontWeight.w600,
-              color: theColors.secondary
+              color: theColors.primaryColor
           ),),
       ),
-    );;
+    );
   }
 }

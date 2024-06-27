@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:nectar_admin/app_administration/bannerPage.dart';
 import 'package:nectar_admin/app_administration/users/app_users.dart';
 import 'package:nectar_admin/app_administration/home_page.dart';
-import 'package:nectar_admin/app_administration/banner_page.dart';
+import 'package:nectar_admin/app_administration/users/admin_user_page.dart';
 import 'package:nectar_admin/app_administration/settings_page.dart';
+import 'package:nectar_admin/app_intro/splash.dart';
+import 'package:nectar_admin/core/common/colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'main.dart';
 
@@ -20,11 +24,13 @@ class _homewithSidebarState extends State<homewithSidebar> {
   final List<Widget> _screens =[
     appUsers(),
     homePage(),
+    adminUsers(),
     bannerPage(),
     settingsPage()
   ];
 
   int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -42,24 +48,22 @@ class _homewithSidebarState extends State<homewithSidebar> {
         },
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.person), label: 'Person'),
+              icon: Icon(Icons.person), label: 'Users'),
           BottomNavigationBarItem(
               icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.feed), label: 'Banner'),
+              icon: Icon(Icons.supervisor_account_rounded), label: 'Admin'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.file_copy), label: 'Banner'),
           BottomNavigationBarItem(
               icon: Icon(Icons.settings) , label:  'Settings'),
           BottomNavigationBarItem(
-            icon: Padding(
-              padding:  EdgeInsets.only(bottom: w*0.03),
-              child: Icon(Icons.logout),
-            ), label: 'Logout')
-
+              icon: Icon(Icons.logout) , label: 'Log Out')
         ],
       ): null,
       body: Row(
         children: [
-          if (MediaQuery.of(context).size.width >=640)
+          if (MediaQuery.of(context).size.width >= 640)
           NavigationRail(
             onDestinationSelected: (int index) {
               setState(() {
@@ -69,26 +73,36 @@ class _homewithSidebarState extends State<homewithSidebar> {
               selectedIndex: _selectedIndex,
               destinations: [
                 NavigationRailDestination(
-                    icon: Icon(Icons.person), label: Text("Person")),
+                    icon: Icon(Icons.person), label: Text("Users")),
                 NavigationRailDestination(
                     icon: Icon(Icons.home), label: Text("Home")),
                 NavigationRailDestination(
-                    icon: Icon(Icons.feed), label: Text("Banner")),
+                    icon: Icon(Icons.supervisor_account_rounded), label: Text("Admin")),
+                NavigationRailDestination(
+                    icon: Icon(Icons.file_copy), label: Text('Banner')),
                 NavigationRailDestination(
                     icon: Icon(Icons.settings), label: Text("Settings")),
+                NavigationRailDestination(
+                    icon: InkWell(
+                      onTap: () async {
+                       SharedPreferences prefs = await SharedPreferences.getInstance();
+                       prefs.remove("loggedIn");
+                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => splashPage(),));
+                      },
+                        child: Icon(Icons.logout)), label: Text("Log Out"))
               ],
             labelType: NavigationRailLabelType.all,
             selectedLabelTextStyle: TextStyle(
-              color: Colors.teal
+              color: theColors.secondary
             ),
             unselectedLabelTextStyle:TextStyle() ,
-            trailing: Column(
-              children: [
-                SizedBox(height: w*0.23,),
-                Icon(Icons.logout,
-                size: w*0.030,)
-              ],
-            ),
+            // trailing: Column(
+            //   children: [
+            //     SizedBox(height: w*0.23,),
+            //     Icon(Icons.logout,
+            //     size: w*0.018,)
+            //   ],
+            // ),
           ),
           Expanded(
               child: _screens[_selectedIndex])

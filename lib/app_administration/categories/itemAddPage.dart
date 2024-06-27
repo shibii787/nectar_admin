@@ -85,7 +85,7 @@ class _itemAddPageState extends ConsumerState<ItemAddPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: theColors.primaryColor,
+      backgroundColor: theColors.sixth,
       appBar: AppBar(
         backgroundColor: theColors.third,
         title: Text("${widget.categoryName}",style: TextStyle(

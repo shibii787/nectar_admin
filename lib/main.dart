@@ -19,6 +19,9 @@ import 'firebase_options.dart';
 var h;
 var w;
 
+var adminEmail;
+var adminId;
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(

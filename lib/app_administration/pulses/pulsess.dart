@@ -79,6 +79,7 @@ class _BestSellingState extends ConsumerState<Pulses> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
+          backgroundColor: theColors.sixth,
           appBar: AppBar(
             title: Text("Pulses",
             style: TextStyle(

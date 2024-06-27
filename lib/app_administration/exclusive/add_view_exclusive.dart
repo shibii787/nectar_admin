@@ -80,6 +80,7 @@ class _addViewExclusivePageState extends ConsumerState<addViewExclusivePage> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
+          backgroundColor: theColors.sixth,
           appBar: AppBar(
             title: Text("Exclusive List",style: TextStyle(
                 fontWeight: FontWeight.w600

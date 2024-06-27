@@ -66,6 +66,7 @@ class _addGroceriesState extends ConsumerState<addGroceries> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        backgroundColor: theColors.sixth,
         appBar: AppBar(
           title: Text("Groceries",style: TextStyle(
               fontWeight: FontWeight.w600

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:nectar_admin/app_administration/best_selling/add_bestSelling.dart';
 import 'package:nectar_admin/app_administration/categories/add_category.dart';
 import 'package:nectar_admin/appView.dart';
 import 'package:nectar_admin/app_administration/exclusive/add_view_exclusive.dart';
 import 'package:nectar_admin/app_administration/groceries/add_groceries.dart';
 import 'package:nectar_admin/app_administration/pulses/pulsess.dart';
-import 'package:nectar_admin/app_administration/users/app_users.dart';
 import 'package:nectar_admin/core/common/colors.dart';
-
 
 import '../../main.dart';
 
@@ -21,13 +20,13 @@ class _homePageState extends State<homePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: theColors.primaryColor,
+    return MediaQuery.of(context).size.width > 840 ? Scaffold(
+      backgroundColor: theColors.sixth,
       appBar: AppBar(
         backgroundColor: theColors.third,
         automaticallyImplyLeading: false,
         centerTitle: true,
-        title: Text("Admin Section",style: TextStyle(
+        title: Text("Home",style: TextStyle(
           fontWeight: FontWeight.w600,
           color: theColors.primaryColor,
         ),),
@@ -218,7 +217,7 @@ class _homePageState extends State<homePage> {
 
         ),
       ),
-    );
+    ): CircularProgressIndicator();
 
   }
 }
