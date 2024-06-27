@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nectar_admin/core/common/colors.dart';
 
@@ -15,12 +14,13 @@ class _bannerPageState extends State<bannerPage> {
     return Scaffold(
       backgroundColor: theColors.primaryColor,
       appBar: AppBar(
+        backgroundColor: theColors.third,
         automaticallyImplyLeading: false,
         centerTitle: true,
-        title: Text("Admin Section",
+        title: Text("Banner",
           style: TextStyle(
               fontWeight: FontWeight.w600,
-              color: theColors.secondary
+              color: theColors.primaryColor
           ),),
       ),
     );
