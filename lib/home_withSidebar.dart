@@ -57,8 +57,6 @@ class _homewithSidebarState extends State<homewithSidebar> {
               icon: Icon(Icons.file_copy), label: 'Banner'),
           BottomNavigationBarItem(
               icon: Icon(Icons.settings) , label:  'Settings'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.logout) , label: 'Log Out')
         ],
       ): null,
       body: Row(
@@ -82,28 +80,20 @@ class _homewithSidebarState extends State<homewithSidebar> {
                     icon: Icon(Icons.file_copy), label: Text('Banner')),
                 NavigationRailDestination(
                     icon: Icon(Icons.settings), label: Text("Settings")),
-                NavigationRailDestination(
-                    icon: InkWell(
-                      onTap: () async {
-                       SharedPreferences prefs = await SharedPreferences.getInstance();
-                       prefs.remove("loggedIn");
-                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => splashPage(),));
-                      },
-                        child: Icon(Icons.logout)), label: Text("Log Out"))
               ],
             labelType: NavigationRailLabelType.all,
             selectedLabelTextStyle: TextStyle(
               color: theColors.secondary
             ),
             unselectedLabelTextStyle:TextStyle() ,
-            // trailing: Column(
-            //   children: [
-            //     SizedBox(height: w*0.23,),
-            //     Icon(Icons.logout,
-            //     size: w*0.018,)
-            //   ],
-            // ),
-          ),
+            trailing: InkWell(
+                        onTap: () async {
+                          SharedPreferences prefs = await SharedPreferences.getInstance();
+                          prefs.remove("loggedIn");
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => splashPage(),));
+                          },
+                child: Icon(Icons.logout))
+            ),
           Expanded(
               child: _screens[_selectedIndex])
         ],
