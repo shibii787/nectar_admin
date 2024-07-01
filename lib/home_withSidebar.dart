@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:nectar_admin/app_administration/bannerPage.dart';
+// import 'package:nectar_admin/app_administration/bannerPage.dart';
 import 'package:nectar_admin/app_administration/users/app_users.dart';
 import 'package:nectar_admin/app_administration/home_page.dart';
 import 'package:nectar_admin/app_administration/users/admin_user_page.dart';
@@ -10,6 +10,7 @@ import 'package:nectar_admin/app_intro/splash.dart';
 import 'package:nectar_admin/core/common/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'Banner/banner.dart';
 import 'main.dart';
 
 class homewithSidebar extends StatefulWidget {
@@ -25,7 +26,7 @@ class _homewithSidebarState extends State<homewithSidebar> {
     appUsers(),
     homePage(),
     adminUsers(),
-    bannerPage(),
+    banner(),
     settingsPage()
   ];
 
