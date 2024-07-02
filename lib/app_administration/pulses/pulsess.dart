@@ -228,7 +228,7 @@ class _BestSellingState extends ConsumerState<Pulses> {
                                     ),
                                     ElevatedButton(
                                         onPressed: () {
-                                          // addPulses();
+                                           addPulses();
                                         }, child: Text("Add")),
 
                                   ],
