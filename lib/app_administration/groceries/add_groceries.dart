@@ -10,6 +10,7 @@ import 'package:nectar_admin/core/common/colors.dart';
 import 'package:nectar_admin/feature/controller/addingController.dart';
 
 import '../../main.dart';
+import '../../model/grocery_model.dart';
 
 class addGroceries extends ConsumerStatefulWidget {
   const addGroceries({super.key});
@@ -43,6 +44,17 @@ class _addGroceriesState extends ConsumerState<addGroceries> {
     uploadFileToFireBase(name, fileBytes);
 
     setState(() {});
+  }
+  addgrocerioes(){
+    GroceryModel groceryModel = GroceryModel(
+        name: itemsNameController.text,
+        price: double.tryParse(priceController.text)!,
+        qty: int.tryParse(qtyController.text)!,
+        description: descriptionController.text,
+        image: urlDownlod ?? "",
+        id: ""
+    );
+    ref.watch(addController).addGroceriesControll(groceryModel:groceryModel);
   }
   Future uploadFileToFireBase(String name, fileBytes) async {
     uploadTask = FirebaseStorage.instance
@@ -208,15 +220,14 @@ class _addGroceriesState extends ConsumerState<addGroceries> {
                                   ),
                                   ElevatedButton(
                                       onPressed: () {
+                                        addgrocerioes();
                                         // addBestSelling();
                                       }, child: Text("Add")),
-
                                 ],
                               ),
                             ),
                           ]
                       ),
-
                       ListView(
                           shrinkWrap: true,
                           physics: BouncingScrollPhysics(),

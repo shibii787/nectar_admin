@@ -38,6 +38,7 @@ final pulsesprovider = StreamProvider((ref) => ref.watch(addController).pulsesSt
 final groceriesstreamProvider = StreamProvider((ref) => ref.watch(addController).groceriesStreamController());
 
 
+
 class AddController{
   final AddRepository _addRepository;
   AddController({
