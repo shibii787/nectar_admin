@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:nectar_admin/core/common/firebase_constants.dart';
 import 'package:nectar_admin/core/providers/firebase_providers.dart';
 import 'package:nectar_admin/model/addCategory_model.dart';
 import 'package:nectar_admin/model/adminModel.dart';
@@ -20,28 +21,28 @@ class AddRepository{
 }) : _firestore = firestore;
 
 // A function for Admin Users
-  CollectionReference get _admins => _firestore.collection("admins");
+  CollectionReference get _admins => _firestore.collection(FirebaseConstants.admins);
 
 //A function to add category collection
-CollectionReference get _categoryItems => _firestore.collection("categories");
+CollectionReference get _categoryItems => _firestore.collection(FirebaseConstants.categories);
 
-// A funtion to ad subItem collection
+// A funtion to add subItem collection
 // CollectionReference get _subItems => _categoryItems.doc().collection("subItems");
 
 //A funtion to add users
-CollectionReference get _stream => _firestore.collection("account");
+CollectionReference get _stream => _firestore.collection(FirebaseConstants.account);
 
 //A function to add bestSelling
-CollectionReference get _bestsell => _firestore.collection("bestSelling");
+CollectionReference get _bestsell => _firestore.collection(FirebaseConstants.bestSelling);
 
 //A function to add exclisive list
-CollectionReference get _exclusive => _firestore.collection("exclusive");
+CollectionReference get _exclusive => _firestore.collection(FirebaseConstants.exclusive);
 
 // A function to add pulses list
-  CollectionReference get _pulses => _firestore.collection("pulses");
+  CollectionReference get _pulses => _firestore.collection(FirebaseConstants.pulses);
 
 //   A funtion to add groceries list
-  CollectionReference get _groceries => _firestore.collection("groceries");
+  CollectionReference get _groceries => _firestore.collection(FirebaseConstants.groceries);
 
 // To add Admins
 adminFunc({required AdminModel adminModel, required String doCid}){

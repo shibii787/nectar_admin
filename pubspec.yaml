@@ -40,7 +40,7 @@ dependencies:
   firebase_storage: ^11.6.0
   firebase_auth: ^4.16.0
   google_sign_in: ^6.1.6
-  sidebarx: ^0.17.1
+  #sidebarx: ^0.17.1
   shared_preferences: ^2.2.3
   image_picker: ^1.0.4
   cached_network_image: ^3.3.0
@@ -49,7 +49,8 @@ dependencies:
   file_picker:
   rxdart: ^0.27.7
   lottie: ^2.7.0
-  package_info_plus:
+  #easy_sidemenu: ^0.6.0
+  #package_info_plus:
 
 dev_dependencies:
   flutter_test:

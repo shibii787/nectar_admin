@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nectar_admin/core/common/colors.dart';
 
@@ -10,14 +8,14 @@ import '../../feature/controller/addingController.dart';
 import '../../main.dart';
 import '../../model/adminModel.dart';
 
-class adminUsers extends ConsumerStatefulWidget {
-  const adminUsers({super.key});
+class AdminUsers extends ConsumerStatefulWidget {
+  const AdminUsers({super.key});
 
   @override
-  ConsumerState<adminUsers> createState() => _bannerPageState();
+  ConsumerState<AdminUsers> createState() => _AdminUsersState();
 }
 
-class _bannerPageState extends ConsumerState<adminUsers> {
+class _AdminUsersState extends ConsumerState<AdminUsers> {
 
   TextEditingController emailController =TextEditingController();
   TextEditingController passwordController =TextEditingController();
@@ -45,7 +43,7 @@ class _bannerPageState extends ConsumerState<adminUsers> {
 
     adminEmail = adminDetails.docs[0]["name"];
     adminId = adminDetails.docs[0]["id"];
-    print("_________________${adminEmail}");
+    //print("_________________${adminEmail}");
 }
 
   @override
@@ -53,12 +51,12 @@ class _bannerPageState extends ConsumerState<adminUsers> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: theColors.sixth,
+        backgroundColor: theColors.beige,
         appBar: AppBar(
           backgroundColor: theColors.third,
           automaticallyImplyLeading: false,
           centerTitle: true,
-          title: Text("Edit Admin",
+          title: const Text("EDIT ADMIN",
             style: TextStyle(
                 fontWeight: FontWeight.w600,
                 color: theColors.primaryColor
@@ -69,8 +67,8 @@ class _bannerPageState extends ConsumerState<adminUsers> {
               indicatorColor: theColors.primaryColor,
               indicatorSize: TabBarIndicatorSize.tab,
               indicatorWeight: w*0.003,
-              tabs: [
-                Tab(
+              tabs: const [
+                 Tab(
                   text: "Add",
                 ),
                 Tab(
@@ -88,9 +86,9 @@ class _bannerPageState extends ConsumerState<adminUsers> {
                     children: [
                       ListView(
                         shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
+                        physics: const BouncingScrollPhysics(),
                         children: [
-                          Container(
+                          SizedBox(
                             height: h*0.4,
                             width: w*1,
                             child: Column(
@@ -105,13 +103,13 @@ class _bannerPageState extends ConsumerState<adminUsers> {
                                       labelText: "Email",
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(w*0.05),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                             color: theColors.third
                                         ),
                                       ),
                                       enabledBorder: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(w*0.05),
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                               color: theColors.third
                                           )
                                       )
@@ -126,13 +124,13 @@ class _bannerPageState extends ConsumerState<adminUsers> {
                                       labelText: "Password",
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(w*0.05),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                             color: theColors.third
                                         ),
                                       ),
                                       enabledBorder: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(w*0.05),
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                               color: theColors.third
                                           )
                                       )
@@ -144,7 +142,7 @@ class _bannerPageState extends ConsumerState<adminUsers> {
                                   emailController.clear();
                                   passwordController.clear();
 
-                                }, child: Text("ADD"))
+                                }, child: const Text("ADD"))
                               ],
                             ),
                           ),
@@ -152,13 +150,13 @@ class _bannerPageState extends ConsumerState<adminUsers> {
                       ),
                       ListView(
                         shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
+                        physics: const BouncingScrollPhysics(),
                         children: [
                           ref.watch(adminStreamProvider).when(
                               data: (data) {
                                 return GridView.builder(
                                   itemCount: data.length,
-                                  physics: BouncingScrollPhysics(),
+                                  physics: const BouncingScrollPhysics(),
                                   shrinkWrap: true,
                                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                       childAspectRatio: 1,
@@ -188,7 +186,7 @@ class _bannerPageState extends ConsumerState<adminUsers> {
                                                   context: context,
                                                   builder: (context) {
                                                     return AlertDialog(
-                                                      title: Center(
+                                                      title: const Center(
                                                           child: Text("Admin Details",style: TextStyle(
                                                               fontWeight: FontWeight.w600
                                                           ),)),
@@ -203,11 +201,11 @@ class _bannerPageState extends ConsumerState<adminUsers> {
                                                       ],
                                                     );
                                                   },);
-                                              }, child: Text("View")),
+                                              }, child: const Text("View")),
 
                                               ElevatedButton(onPressed: () {
                                                 FirebaseFirestore.instance.collection("admins").doc(data[index].id).delete();
-                                              }, child: Icon(Icons.delete_outline))
+                                              }, child: const Icon(Icons.delete_outline))
                                             ],
                                           )
                                         ],
@@ -219,7 +217,7 @@ class _bannerPageState extends ConsumerState<adminUsers> {
                                 return Text(error.toString());
                               },
                               loading: () {
-                                return Center(
+                                return const Center(
                                   child: CircularProgressIndicator(),
                                 );
                               },

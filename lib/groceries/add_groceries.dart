@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nectar_admin/core/common/colors.dart';
@@ -12,14 +11,14 @@ import 'package:nectar_admin/feature/controller/addingController.dart';
 import '../../main.dart';
 import '../../model/grocery_model.dart';
 
-class addGroceries extends ConsumerStatefulWidget {
-  const addGroceries({super.key});
+class AddGroceries extends ConsumerStatefulWidget {
+  const AddGroceries({super.key});
 
   @override
-  ConsumerState<addGroceries> createState() => _addGroceriesState();
+  ConsumerState<AddGroceries> createState() => _addGroceriesState();
 }
 
-class _addGroceriesState extends ConsumerState<addGroceries> {
+class _addGroceriesState extends ConsumerState<AddGroceries> {
 
   TextEditingController itemsNameController=TextEditingController();
   TextEditingController priceController=TextEditingController();
@@ -40,7 +39,7 @@ class _addGroceriesState extends ConsumerState<addGroceries> {
 
     // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text("Uploading...")));
+        .showSnackBar(const SnackBar(content: Text("Uploading...")));
     uploadFileToFireBase(name, fileBytes);
 
     setState(() {});
@@ -80,10 +79,10 @@ class _addGroceriesState extends ConsumerState<addGroceries> {
       child: Scaffold(
         backgroundColor: theColors.sixth,
         appBar: AppBar(
-          title: Text("Groceries",style: TextStyle(
+          title: const Text("Groceries",style: TextStyle(
               fontWeight: FontWeight.w600
           ),),
-          bottom: TabBar(
+          bottom: const TabBar(
               tabs: [
                 Tab(
                   text: "Add",
@@ -103,140 +102,138 @@ class _addGroceriesState extends ConsumerState<addGroceries> {
                     children: [
                       ListView(
                           shrinkWrap: true,
-                          physics: BouncingScrollPhysics(),
+                          physics: const BouncingScrollPhysics(),
                           children: [
-                            Container(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Stack(
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          selectFileToMessage("");
-                                        },
-                                        child: CircleAvatar(
-                                          radius: w*0.065,
-                                          backgroundColor: theColors.secondary,
-                                          backgroundImage: pickFile != null ? MemoryImage(Uint8List.fromList(pickFile!.bytes as List<int>)) : null,
-                                        ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Stack(
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        selectFileToMessage("");
+                                      },
+                                      child: CircleAvatar(
+                                        radius: w*0.065,
+                                        backgroundColor: theColors.secondary,
+                                        backgroundImage: pickFile != null ? MemoryImage(Uint8List.fromList(pickFile!.bytes as List<int>)) : null,
                                       ),
-                                    ],
-                                  ),
-                                  ListView(
-                                    shrinkWrap: true,
-                                    physics: BouncingScrollPhysics(),
-                                    children: [
-                                      SizedBox(height: w*0.01,),
-                                      TextFormField(
-                                        controller: itemsNameController,
-                                        decoration: InputDecoration(
-                                            border: OutlineInputBorder(
-                                                borderRadius: BorderRadius.circular(w*0.05)
+                                    ),
+                                  ],
+                                ),
+                                ListView(
+                                  shrinkWrap: true,
+                                  physics: const BouncingScrollPhysics(),
+                                  children: [
+                                    SizedBox(height: w*0.01,),
+                                    TextFormField(
+                                      controller: itemsNameController,
+                                      decoration: InputDecoration(
+                                          border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(w*0.05)
+                                          ),
+                                          labelText: "Name",
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(w*0.05),
+                                            borderSide: const BorderSide(
+                                                color: theColors.third
                                             ),
-                                            labelText: "Name",
-                                            focusedBorder: OutlineInputBorder(
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
                                               borderRadius: BorderRadius.circular(w*0.05),
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                   color: theColors.third
-                                              ),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                                borderRadius: BorderRadius.circular(w*0.05),
-                                                borderSide: BorderSide(
-                                                    color: theColors.third
-                                                )
-                                            )
-                                        ),
+                                              )
+                                          )
                                       ),
-                                      SizedBox(height: w*0.01,),
-                                      TextFormField(
-                                        controller: priceController,
-                                        decoration: InputDecoration(
-                                            border: OutlineInputBorder(
-                                                borderRadius: BorderRadius.circular(w*0.05)
+                                    ),
+                                    SizedBox(height: w*0.01,),
+                                    TextFormField(
+                                      controller: priceController,
+                                      decoration: InputDecoration(
+                                          border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(w*0.05)
+                                          ),
+                                          labelText: "Price",
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(w*0.05),
+                                            borderSide: const BorderSide(
+                                                color: theColors.third
                                             ),
-                                            labelText: "Price",
-                                            focusedBorder: OutlineInputBorder(
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
                                               borderRadius: BorderRadius.circular(w*0.05),
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                   color: theColors.third
-                                              ),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                                borderRadius: BorderRadius.circular(w*0.05),
-                                                borderSide: BorderSide(
-                                                    color: theColors.third
-                                                )
-                                            )
-                                        ),
+                                              )
+                                          )
                                       ),
-                                      SizedBox(height: w*0.01,),
-                                      TextFormField(
-                                        controller: qtyController,
-                                        decoration: InputDecoration(
-                                            border: OutlineInputBorder(
-                                                borderRadius: BorderRadius.circular(w*0.05)
+                                    ),
+                                    SizedBox(height: w*0.01,),
+                                    TextFormField(
+                                      controller: qtyController,
+                                      decoration: InputDecoration(
+                                          border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(w*0.05)
+                                          ),
+                                          labelText: "Quantity",
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(w*0.05),
+                                            borderSide: const BorderSide(
+                                                color: theColors.third
                                             ),
-                                            labelText: "Quantity",
-                                            focusedBorder: OutlineInputBorder(
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
                                               borderRadius: BorderRadius.circular(w*0.05),
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                   color: theColors.third
-                                              ),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                                borderRadius: BorderRadius.circular(w*0.05),
-                                                borderSide: BorderSide(
-                                                    color: theColors.third
-                                                )
-                                            )
-                                        ),
+                                              )
+                                          )
                                       ),
-                                      SizedBox(height: w*0.01,),
-                                      TextFormField(
-                                        controller: descriptionController,
-                                        decoration: InputDecoration(
-                                            border: OutlineInputBorder(
-                                                borderRadius: BorderRadius.circular(w*0.05)
+                                    ),
+                                    SizedBox(height: w*0.01,),
+                                    TextFormField(
+                                      controller: descriptionController,
+                                      decoration: InputDecoration(
+                                          border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(w*0.05)
+                                          ),
+                                          labelText: "Description",
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(w*0.05),
+                                            borderSide: const BorderSide(
+                                                color: theColors.third
                                             ),
-                                            labelText: "Description",
-                                            focusedBorder: OutlineInputBorder(
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
                                               borderRadius: BorderRadius.circular(w*0.05),
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                   color: theColors.third
-                                              ),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                                borderRadius: BorderRadius.circular(w*0.05),
-                                                borderSide: BorderSide(
-                                                    color: theColors.third
-                                                )
-                                            )
-                                        ),
+                                              )
+                                          )
                                       ),
-                                      SizedBox(height: w*0.01,)
-                                    ],
-                                  ),
-                                  ElevatedButton(
-                                      onPressed: () {
-                                        addgrocerioes();
-                                        // addBestSelling();
-                                      }, child: Text("Add")),
-                                ],
-                              ),
+                                    ),
+                                    SizedBox(height: w*0.01,)
+                                  ],
+                                ),
+                                ElevatedButton(
+                                    onPressed: () {
+                                      addgrocerioes();
+                                      // addBestSelling();
+                                    }, child: const Text("Add")),
+                              ],
                             ),
                           ]
                       ),
                       ListView(
                           shrinkWrap: true,
-                          physics: BouncingScrollPhysics(),
+                          physics: const BouncingScrollPhysics(),
                           children: [
                             ref.watch(groceriesstreamProvider).when(data: (data) {
                               data.sort((a, b) => a.name.compareTo(b.name));
                               return GridView.builder(
                                 itemCount: data.length,
-                                physics: BouncingScrollPhysics(),
+                                physics: const BouncingScrollPhysics(),
                                 shrinkWrap: true,
                                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                     childAspectRatio: 1,
@@ -264,14 +261,13 @@ class _addGroceriesState extends ConsumerState<addGroceries> {
                                                 context: context,
                                                 builder: (context) {
                                                   return AlertDialog(
-                                                    title: Center(
+                                                    title: const Center(
                                                         child: Text("Item Details",style: TextStyle(
                                                             fontWeight: FontWeight.w600
                                                         ),)),
                                                     actions: [
                                                       Column(
                                                         children: [
-                                                          Text(data[index].image),
                                                           Text("Name: ${data[index].name}"),
                                                           Text("Email: ${data[index].price}"),
                                                           Text("Password: ${data[index].qty}"),
@@ -282,11 +278,11 @@ class _addGroceriesState extends ConsumerState<addGroceries> {
                                                     ],
                                                   );
                                                 },);
-                                            }, child: Text("View")),
+                                            }, child: const Text("View")),
 
                                             ElevatedButton(onPressed: () {
                                               FirebaseFirestore.instance.collection("groceries").doc(data[index].id).delete();
-                                            }, child: Icon(Icons.delete_outline))
+                                            }, child: const Icon(Icons.delete_outline))
                                           ],
                                         )
                                       ],
@@ -297,7 +293,7 @@ class _addGroceriesState extends ConsumerState<addGroceries> {
                               return Text(error.toString());
                             },
                               loading:  () {
-                                return Center(
+                                return const Center(
                                   child: CircularProgressIndicator(),
                                 );
                               },),

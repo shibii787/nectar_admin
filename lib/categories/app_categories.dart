@@ -1,20 +1,19 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nectar_admin/app_administration/categories/itemAddPage.dart';
 import 'package:nectar_admin/core/common/colors.dart';
 import 'package:nectar_admin/feature/controller/addingController.dart';
 
 import '../../main.dart';
+import 'itemAddPage.dart';
 
-class categories extends ConsumerStatefulWidget {
-  const categories({super.key});
+class Categories extends ConsumerStatefulWidget {
+  const Categories({super.key});
 
   @override
-  ConsumerState<categories> createState() => _categoriesState();
+  ConsumerState<Categories> createState() => _categoriesState();
 }
 
-class _categoriesState extends ConsumerState<categories> {
+class _categoriesState extends ConsumerState<Categories> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,19 +26,19 @@ class _categoriesState extends ConsumerState<categories> {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back,
             color: theColors.primaryColor,
           ),
         ),
-        title: Text("Categories",style: TextStyle(
+        title: const Text("Categories",style: TextStyle(
           color: theColors.primaryColor,fontWeight: FontWeight.w600
         ),),
       ),
       body: Padding(
         padding: EdgeInsets.all(w*0.03),
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
 
@@ -47,7 +46,7 @@ class _categoriesState extends ConsumerState<categories> {
                   data: (data) {
                     return ListView.builder(
                       itemCount: data.length,
-                      physics: BouncingScrollPhysics(),
+                      physics: const BouncingScrollPhysics(),
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
                       itemBuilder: (context, index) {
@@ -67,12 +66,12 @@ class _categoriesState extends ConsumerState<categories> {
                                       color: theColors.secondary,
                                       blurRadius: w * 0.01,
                                       spreadRadius: w * 0.0001,
-                                      offset: Offset(0, 4))
+                                      offset: const Offset(0, 4))
                                 ]),
                             child: Center(
                               child: Text(
                                 data[index].name,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontWeight: FontWeight.w500,
                                     color: theColors.primaryColor),
                               ),
@@ -87,7 +86,7 @@ class _categoriesState extends ConsumerState<categories> {
                     return Text(error.toString());
                   },
                   loading: () {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   },

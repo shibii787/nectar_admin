@@ -6,32 +6,27 @@ import 'package:nectar_admin/feature/controller/addingController.dart';
 
 import '../../main.dart';
 
-class appUsers extends ConsumerStatefulWidget {
-  const appUsers({super.key});
+class AppUsers extends ConsumerStatefulWidget {
+  const AppUsers({super.key});
 
   @override
-  ConsumerState<appUsers> createState() => _appUsersState();
+  ConsumerState<AppUsers> createState() => _AppUsersState();
 }
 
-class _appUsersState extends ConsumerState<appUsers> {
+class _AppUsersState extends ConsumerState<AppUsers> {
 
   @override
   Widget build(BuildContext context) {
     return MediaQuery.of(context).size.width > 840 ? Scaffold(
-      backgroundColor: theColors.primaryColor,
+      backgroundColor: theColors.beige,
       appBar: AppBar(
         backgroundColor: theColors.third,
         automaticallyImplyLeading: false,
-        // leading: InkWell(
-        //   onTap: () {
-        //     Navigator.pop(context);
-        //   },
-        //   child: Icon(Icons.arrow_back,
-        //       color: theColors.primaryColor),
-        // ),
         centerTitle: true,
-        title: Text("Users",style: TextStyle(
-          color: theColors.primaryColor,fontWeight: FontWeight.w600
+        title: const Text("USERS",style: TextStyle(
+          color: theColors.primaryColor,
+            fontWeight: FontWeight.w600,
+          letterSpacing: 1
         ),),
       ),
       body: Padding(
@@ -43,7 +38,7 @@ class _appUsersState extends ConsumerState<appUsers> {
                   return Expanded(
                     child: GridView.builder(
                       itemCount: data.length,
-                        physics: BouncingScrollPhysics(),
+                        physics: const BouncingScrollPhysics(),
                         shrinkWrap: true,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           childAspectRatio: 1,
@@ -75,7 +70,7 @@ class _appUsersState extends ConsumerState<appUsers> {
                                           context: context,
                                           builder: (context) {
                                             return AlertDialog(
-                                              title: Center(
+                                              title: const Center(
                                                   child: Text("User Details",style: TextStyle(
                                                     fontWeight: FontWeight.w600
                                                   ),)),
@@ -86,17 +81,17 @@ class _appUsersState extends ConsumerState<appUsers> {
                                                     Text("Email: ${data[index].email}"),
                                                     Text("Password: ${data[index].password}"),
                                                     Text("Location: ${data[index].location}"),
-                                                    Text("PhoneNumber: ${data[index].name}"),
+                                                    Text("PhoneNumber: ${data[index].phoneNumber}"),
                                                     Text("ID: ${data[index].id}"),
                                                   ],
                                                 )
                                               ],
                                             );
                                           },);
-                                    }, child: Text("View")),
+                                    }, child: const Text("View")),
                                     ElevatedButton(onPressed: () {
                                       FirebaseFirestore.instance.collection("account").doc(data[index].id).delete();
-                                    }, child: Icon(Icons.delete_outline)),
+                                    }, child: const Icon(Icons.delete_outline)),
                                   ],
                                 ),
                                 Row(
@@ -105,7 +100,7 @@ class _appUsersState extends ConsumerState<appUsers> {
                                     ElevatedButton(
                                         onPressed: () {
 
-                                        }, child: Text("Block"))
+                                        }, child: const Text("Block"))
                                   ],
                                 )
                               ],
@@ -118,13 +113,13 @@ class _appUsersState extends ConsumerState<appUsers> {
                   return Text(error.toString());
                 },
                 loading: () {
-                  return Center(
+                  return const Center(
                       child: CircularProgressIndicator(),
                     );
                 },)
           ],
         ),
       ),
-    ) : CircularProgressIndicator();
+    ) : const CircularProgressIndicator();
   }
 }

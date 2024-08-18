@@ -13,7 +13,7 @@ import '../repository/addingRepository.dart';
 
 final addController = Provider((ref) => AddController(addRepository: ref.watch(addRepository)));
 
-// Provider finction for admins
+// Provider function for admins
 final adminStreamProvider = StreamProvider((ref) => ref.watch(addController).adminStreamController());
 
 // Provider funtion for users
@@ -110,16 +110,11 @@ controllBestsellingFunction({required BestSellingModel bestsellingModel}){
   _addRepository.pulsesfunction(pulsesModel: pulsesModel);
   }
 
-//A function to show  pulses list
-//   controllPulsesFunction(){
-//   _addRepository.
-//   }
-
-
-// A stream to show excclusive list
+// A stream to show exclusive list
 Stream<List<ExclusiveModel>> exclusiveStreamController(){
   return _addRepository.exclusiveStream();
 }
+
 // A Stream to show pulses list
 Stream<List<PulsesModel>> pulsesStreamController(){
   return _addRepository.pulsesstream();

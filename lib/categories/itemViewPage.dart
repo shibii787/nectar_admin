@@ -5,19 +5,19 @@ import 'package:nectar_admin/core/common/colors.dart';
 
 import '../../main.dart';
 
-class itemViewPage extends ConsumerStatefulWidget {
+class ItemViewPage extends ConsumerStatefulWidget {
   final String title;
   final String id;
-  const itemViewPage({super.key,
+  const ItemViewPage({super.key,
   required this.title,
     required this.id
   });
 
   @override
-  ConsumerState<itemViewPage> createState() => _itemViewPageState();
+  ConsumerState<ItemViewPage> createState() => _itemViewPageState();
 }
 
-class _itemViewPageState extends ConsumerState<itemViewPage> {
+class _itemViewPageState extends ConsumerState<ItemViewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,11 +29,11 @@ class _itemViewPageState extends ConsumerState<itemViewPage> {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(Icons.arrow_back,
+          child: const Icon(Icons.arrow_back,
               color: theColors.primaryColor),
         ),
         centerTitle: true,
-        title: Text(widget.title,style: TextStyle(
+        title: Text(widget.title,style: const TextStyle(
           color: theColors.primaryColor
         ),),
       ),
@@ -44,16 +44,16 @@ class _itemViewPageState extends ConsumerState<itemViewPage> {
               stream: FirebaseFirestore.instance.collection("categories").doc(widget.id).collection("subItems").snapshots(),
               builder: (context, snapshot) {
                 if(!snapshot.hasData){
-                  return Text("No data");
+                  return const Text("No data");
                 }
                 var newDetails = snapshot.data!.docs;
-                return newDetails.length==0?
-                Center(
+                return newDetails.isEmpty?
+                const Center(
                     child: CircularProgressIndicator()) :
                 Expanded(
                   child: GridView.builder(
                     itemCount: newDetails.length,
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -75,7 +75,7 @@ class _itemViewPageState extends ConsumerState<itemViewPage> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container(
+                            SizedBox(
                                 height: w*0.1,
                                 width: w*0.1,
                                 child: Image(image: NetworkImage((newDetails[index]["image"])),
@@ -87,7 +87,7 @@ class _itemViewPageState extends ConsumerState<itemViewPage> {
                                         color: theColors.primaryColor,
                                         borderRadius: BorderRadius.circular(w*0.03)
                                     ),
-                                    child: Center(
+                                    child: const Center(
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
@@ -116,17 +116,17 @@ class _itemViewPageState extends ConsumerState<itemViewPage> {
                                   );}
                         ),
                             ),
-                            Text(newDetails[index]["name"],style: TextStyle(
+                            Text(newDetails[index]["name"],style: const TextStyle(
                               fontWeight: FontWeight.w600,
 
                             ),),
-                            Text("Quantity : ${newDetails[index]["qty"]}".toString(),style: TextStyle(
+                            Text("Quantity : ${newDetails[index]["qty"]}".toString(),style: const TextStyle(
                                 fontWeight: FontWeight.w600
                             ),),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("₹${newDetails[index]["price"]} ".toString(),style: TextStyle(
+                                Text("₹${newDetails[index]["price"]} ".toString(),style: const TextStyle(
                                   fontWeight: FontWeight.w600,
                                 ),),
                                 Container(
@@ -139,7 +139,7 @@ class _itemViewPageState extends ConsumerState<itemViewPage> {
                                       border: Border.all(
                                           color: theColors.secondary,
                                           width: w * 0.003)),
-                                  child:  Icon(
+                                  child:  const Icon(
                                     Icons.add,
                                     color: theColors.primaryColor,
                                   ),

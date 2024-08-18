@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nectar_admin/app_intro/splash.dart';
 
-
 import 'firebase_options.dart';
 
 var h;
@@ -18,7 +17,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform
   );
-  runApp(ProviderScope
+  runApp(const ProviderScope
     (child: nectar()));
 }
 
@@ -46,7 +45,7 @@ class _nectarState extends State<nectar> {
             textTheme: GoogleFonts.poppinsTextTheme(),
         ),
         debugShowCheckedModeBanner: false,
-        home: homewithSidebar(),
+        home: const SplashPage(),
       ),
     );
   }

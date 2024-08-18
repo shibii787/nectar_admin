@@ -96,7 +96,7 @@ class _itemAddPageState extends ConsumerState<ItemAddPage> {
             onTap: () {
               Navigator.pop(context);
             },
-            child: Icon(Icons.arrow_back,color: theColors.primaryColor,)),
+            child: const Icon(Icons.arrow_back,color: theColors.primaryColor,)),
       ),
       body: Padding(
         padding: EdgeInsets.all(w*0.03),
@@ -138,16 +138,16 @@ class _itemAddPageState extends ConsumerState<ItemAddPage> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(w*0.05),
                   ),
-                  label: Text("Add New Item"),
+                  label: const Text("Add New Item"),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(w*0.05),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                           color: theColors.third
                       )
                   ),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(w*0.05),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                           color: theColors.third
                       )
                   )
@@ -159,7 +159,7 @@ class _itemAddPageState extends ConsumerState<ItemAddPage> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(w*0.05),
                   ),
-                  label: Text("Add Price"),
+                  label: const Text("Add Price"),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(w*0.05),
                       borderSide: BorderSide(
@@ -168,7 +168,7 @@ class _itemAddPageState extends ConsumerState<ItemAddPage> {
                   ),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(w*0.05),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                           color: theColors.third
                       )
                   )
@@ -180,10 +180,10 @@ class _itemAddPageState extends ConsumerState<ItemAddPage> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(w*0.05),
                   ),
-                  label: Text("Add Quantity"),
+                  label: const Text("Add Quantity"),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(w*0.05),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                           color: theColors.third
                       )
                   ),
@@ -201,16 +201,16 @@ class _itemAddPageState extends ConsumerState<ItemAddPage> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(w*0.05),
                   ),
-                  label: Text("Description"),
+                  label: const Text("Description"),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(w*0.05),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                           color: theColors.third
                       )
                   ),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(w*0.05),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                           color: theColors.third
                       )
                   )
@@ -222,11 +222,11 @@ class _itemAddPageState extends ConsumerState<ItemAddPage> {
                 ElevatedButton(
                     onPressed: () {
                       addItemFunc();
-                    }, child: Text("SUBMIT",)),
+                    }, child: const Text("SUBMIT",)),
                 ElevatedButton(onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Appview(),));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Appview(),));
                 },
-                    child: Text("Items")
+                    child: const Text("Items")
                 )
               ],
             )

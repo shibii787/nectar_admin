@@ -1,36 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-import 'package:nectar_admin/app_administration/best_selling/add_bestSelling.dart';
-import 'package:nectar_admin/app_administration/categories/add_category.dart';
 import 'package:nectar_admin/appView.dart';
-import 'package:nectar_admin/app_administration/exclusive/add_view_exclusive.dart';
-import 'package:nectar_admin/app_administration/groceries/add_groceries.dart';
-import 'package:nectar_admin/app_administration/pulses/pulsess.dart';
 import 'package:nectar_admin/core/common/colors.dart';
+import 'package:nectar_admin/pulses/pulsess.dart';
+import '../main.dart';
+import 'best_selling/add_bestSelling.dart';
+import 'categories/add_category.dart';
+import 'exclusive/add_view_exclusive.dart';
+import 'groceries/add_groceries.dart';
 
-import '../../main.dart';
-
-class homePage extends StatefulWidget {
-  const homePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<homePage> createState() => _homePageState();
+  State<HomePage> createState() => _HomePageState();
 }
-class _homePageState extends State<homePage> {
+class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return MediaQuery.of(context).size.width > 840 ? Scaffold(
-      backgroundColor: theColors.sixth,
-      appBar: AppBar(
-        backgroundColor: theColors.third,
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        title: Text("Home",style: TextStyle(
-          fontWeight: FontWeight.w600,
-          color: theColors.primaryColor,
-        ),),
-      ),
+    return MediaQuery.of(context).size.width > 1080 ? Scaffold(
+      backgroundColor: theColors.beige,
       body: Padding(
         padding: EdgeInsets.all(w*0.04),
         child: Column(
@@ -41,23 +30,23 @@ class _homePageState extends State<homePage> {
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => addCategory(),));                  },
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const AddCategory(),));                  },
                   child: Container(
                     height: h*0.2,
-                    width: w*0.4,
+                    width: w*0.3,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(w*0.04),
+                      borderRadius: BorderRadius.circular(w*0.01),
                       color: theColors.third,
                       boxShadow: [
                         BoxShadow(
                           color: theColors.secondary,
                           blurRadius: w*0.01,
                           spreadRadius: w*0.0001,
-                          offset: Offset(0, 4)
+                          offset: const Offset(0, 4)
                         )
                       ]
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text("Categories",style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: theColors.primaryColor
@@ -67,24 +56,24 @@ class _homePageState extends State<homePage> {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => addViewExclusivePage(),));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const AddViewExclusivePage(),));
                   },
                   child: Container(
                     height: h*0.2,
-                    width: w*0.4,
+                    width: w*0.3,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(w*0.04),
-                      color: theColors.third,
-                      boxShadow: [
-                        BoxShadow(
-                          color: theColors.secondary,
-                          blurRadius: w*0.01,
-                          spreadRadius: w*0.0001,
-                          offset: Offset(0, 4)
-                        )
-                      ]
+                      borderRadius: BorderRadius.circular(w*0.01),
+                        color: theColors.third,
+                        boxShadow: [
+                          BoxShadow(
+                              color: theColors.secondary,
+                              blurRadius: w*0.01,
+                              spreadRadius: w*0.0001,
+                              offset: const Offset(0, 4)
+                          )
+                        ]
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text("Exclusive Items",style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: theColors.primaryColor
@@ -99,24 +88,24 @@ class _homePageState extends State<homePage> {
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => BestSelling(),));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const BestSelling(),));
                   },
                   child: Container(
                     height: h*0.2,
-                    width: w*0.4,
+                    width: w*0.3,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(w*0.04),
+                        borderRadius: BorderRadius.circular(w*0.01),
                         color: theColors.third,
                         boxShadow: [
                           BoxShadow(
                               color: theColors.secondary,
                               blurRadius: w*0.01,
                               spreadRadius: w*0.0001,
-                              offset: Offset(0, 4)
+                              offset: const Offset(0, 4)
                           )
                         ]
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text("Best Selling Items",style: TextStyle(
                           fontWeight: FontWeight.w500,
                           color: theColors.primaryColor
@@ -124,28 +113,54 @@ class _homePageState extends State<homePage> {
                     ),
                   ),
                 ),
+                // InkWell(
+                //   onTap: () {
+                //     Navigator.push(context, MaterialPageRoute(builder: (context) => const Appview(),));
+                //   },
+                //   child: Container(
+                //     height: h*0.2,
+                //     width: w*0.3,
+                //     decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(w*0.01),
+                //         color: theColors.third,
+                //         boxShadow: [
+                //           BoxShadow(
+                //               color: theColors.secondary,
+                //               blurRadius: w*0.01,
+                //               spreadRadius: w*0.0001,
+                //               offset: const Offset(0, 4)
+                //           )
+                //         ]
+                //     ),
+                //     child: const Center(
+                //       child: Text("Items view",style: TextStyle(
+                //           fontWeight: FontWeight.w500,
+                //           color: theColors.primaryColor
+                //       ),),
+                //     ),
+                //   ),
+                // ),
                 InkWell(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => Appview(),));
-
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const Pulses(),));
                   },
                   child: Container(
                     height: h*0.2,
-                    width: w*0.4,
+                    width: w*0.3,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(w*0.04),
+                        borderRadius: BorderRadius.circular(w*0.01),
                         color: theColors.third,
                         boxShadow: [
                           BoxShadow(
                               color: theColors.secondary,
                               blurRadius: w*0.01,
                               spreadRadius: w*0.0001,
-                              offset: Offset(0, 4)
+                              offset: const Offset(0, 4)
                           )
                         ]
                     ),
-                    child: Center(
-                      child: Text("Items view",style: TextStyle(
+                    child: const Center(
+                      child: Text("Pulses",style: TextStyle(
                           fontWeight: FontWeight.w500,
                           color: theColors.primaryColor
                       ),),
@@ -155,55 +170,28 @@ class _homePageState extends State<homePage> {
               ],
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => Pulses(),));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const AddGroceries(),));
                   },
                   child: Container(
                     height: h*0.2,
-                    width: w*0.4,
+                    width: w*0.3,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(w*0.04),
+                        borderRadius: BorderRadius.circular(w*0.01),
                         color: theColors.third,
                         boxShadow: [
                           BoxShadow(
                               color: theColors.secondary,
                               blurRadius: w*0.01,
                               spreadRadius: w*0.0001,
-                              offset: Offset(0, 4)
+                              offset: const Offset(0, 4)
                           )
                         ]
                     ),
-                    child: Center(
-                      child: Text("Pulses",style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          color: theColors.primaryColor
-                      ),),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => addGroceries(),));
-                  },
-                  child: Container(
-                    height: h*0.2,
-                    width: w*0.4,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(w*0.04),
-                        color: theColors.third,
-                        boxShadow: [
-                          BoxShadow(
-                              color: theColors.secondary,
-                              blurRadius: w*0.01,
-                              spreadRadius: w*0.0001,
-                              offset: Offset(0, 4)
-                          )
-                        ]
-                    ),
-                    child: Center(
+                    child: const Center(
                       child: Text("Groceries",style: TextStyle(
                           fontWeight: FontWeight.w500,
                           color: theColors.primaryColor
@@ -217,7 +205,7 @@ class _homePageState extends State<homePage> {
 
         ),
       ),
-    ): CircularProgressIndicator();
+    ): Container(color: theColors.third);
 
   }
 }

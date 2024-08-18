@@ -8,18 +8,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nectar_admin/core/common/colors.dart';
 import 'package:nectar_admin/feature/controller/addingController.dart';
-import 'package:nectar_admin/model/bestSelling_model.dart';
+import 'package:nectar_admin/model/pulses_model.dart';
 
 import '../../main.dart';
 
-class BestSelling extends ConsumerStatefulWidget {
-  const BestSelling({super.key});
+class Pulses extends ConsumerStatefulWidget {
+  const Pulses({super.key});
 
   @override
-  ConsumerState<BestSelling> createState() => _BestSellingState();
+  ConsumerState<Pulses> createState() => _BestSellingState();
 }
 
-class _BestSellingState extends ConsumerState<BestSelling> {
+class _BestSellingState extends ConsumerState<Pulses> {
 
   TextEditingController itemsNameController=TextEditingController();
   TextEditingController priceController=TextEditingController();
@@ -29,7 +29,6 @@ class _BestSellingState extends ConsumerState<BestSelling> {
   PlatformFile? pickFile;
   UploadTask? uploadTask;
   String? urlDownlod;
-
   Future selectFileToMessage(String name) async {
     final result = await FilePicker.platform.pickFiles();
     if (result == null) return;
@@ -41,14 +40,14 @@ class _BestSellingState extends ConsumerState<BestSelling> {
 
     // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text("Uploading...")));
+        .showSnackBar(const SnackBar(content: Text("Uploading...")));
     uploadFileToFireBase(name, fileBytes);
 
     setState(() {});
   }
   Future uploadFileToFireBase(String name, fileBytes) async {
     uploadTask = FirebaseStorage.instance
-        .ref('best selling/${DateTime.now().toString()}-$name')
+        .ref('pulses/${DateTime.now().toString()}-$name')
         .putData(fileBytes,SettableMetadata(
         contentType: 'image/jpeg'
     ));
@@ -62,20 +61,16 @@ class _BestSellingState extends ConsumerState<BestSelling> {
     // ScaffoldMessenger.of(context).clearSnackBars();
     setState(() {});
   }
-  addBestSelling(){
-    BestSellingModel bestSellingModel=BestSellingModel(
+ addPulses(){
+    PulsesModel pulsesModel = PulsesModel(
         name: itemsNameController.text,
         price: double.tryParse(priceController.text)!,
         qty: int.tryParse(qtyController.text)!,
         description: descriptionController.text,
-        image: urlDownlod??"",
+        image: urlDownlod ?? "",
         id: "");
-    ref.watch(addController).controllBestsellingFunction(bestsellingModel: bestSellingModel);
-    itemsNameController.clear();
-    priceController.clear();
-    qtyController.clear();
-    descriptionController.clear();
-  }
+    ref.watch(addController).controlPulsesFunction(pulsesModel: pulsesModel);
+ }
 
   @override
   Widget build(BuildContext context) {
@@ -84,10 +79,11 @@ class _BestSellingState extends ConsumerState<BestSelling> {
         child: Scaffold(
           backgroundColor: theColors.sixth,
           appBar: AppBar(
-            title: Text("Best Selling List",style: TextStyle(
+            title: const Text("Pulses",
+            style: TextStyle(
               fontWeight: FontWeight.w600
             ),),
-            bottom: TabBar(
+            bottom: const TabBar(
                 tabs: [
                   Tab(
                     text: "Add",
@@ -107,29 +103,31 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                       children: [
                         ListView(
                             shrinkWrap: true,
-                            physics: BouncingScrollPhysics(),
+                            physics: const BouncingScrollPhysics(),
                             children: [
-                              Container(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Stack(
-                                      children: [
-                                        InkWell(
-                                          onTap: () {
-                                            selectFileToMessage("");
-                                          },
-                                          child: CircleAvatar(
-                                            radius: w*0.065,
-                                            backgroundColor: theColors.secondary,
-                                            backgroundImage: pickFile != null ? MemoryImage(Uint8List.fromList(pickFile!.bytes as List<int>)) : null,
-                                          ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Stack(
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          selectFileToMessage("");
+                                        },
+                                        child: CircleAvatar(
+                                          radius: w*0.065,
+                                          backgroundColor: theColors.secondary,
+                                          backgroundImage: pickFile != null ? MemoryImage(Uint8List.fromList(pickFile!.bytes as List<int>)) : null,
                                         ),
-                                      ],
-                                    ),
-                                    ListView(
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: h*0.4,
+                                    width: w*1,
+                                    child: ListView(
                                       shrinkWrap: true,
-                                      physics: BouncingScrollPhysics(),
+                                      physics: const BouncingScrollPhysics(),
                                       children: [
                                         SizedBox(height: w*0.01,),
                                         TextFormField(
@@ -141,19 +139,21 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                                               labelText: "Name",
                                               focusedBorder: OutlineInputBorder(
                                                 borderRadius: BorderRadius.circular(w*0.05),
-                                                borderSide: BorderSide(
+                                                borderSide: const BorderSide(
                                                     color: theColors.third
                                                 ),
                                               ),
                                               enabledBorder: OutlineInputBorder(
                                                   borderRadius: BorderRadius.circular(w*0.05),
-                                                  borderSide: BorderSide(
+                                                  borderSide: const BorderSide(
                                                       color: theColors.third
                                                   )
                                               )
                                           ),
                                         ),
-                                        SizedBox(height: w*0.01,),
+                                        SizedBox(
+                                          height: w*0.01
+                                        ),
                                         TextFormField(
                                           controller: priceController,
                                           decoration: InputDecoration(
@@ -163,13 +163,13 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                                               labelText: "Price",
                                               focusedBorder: OutlineInputBorder(
                                                 borderRadius: BorderRadius.circular(w*0.05),
-                                                borderSide: BorderSide(
+                                                borderSide: const BorderSide(
                                                     color: theColors.third
                                                 ),
                                               ),
                                               enabledBorder: OutlineInputBorder(
                                                   borderRadius: BorderRadius.circular(w*0.05),
-                                                  borderSide: BorderSide(
+                                                  borderSide: const BorderSide(
                                                       color: theColors.third
                                                   )
                                               )
@@ -185,13 +185,13 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                                               labelText: "Quantity",
                                               focusedBorder: OutlineInputBorder(
                                                 borderRadius: BorderRadius.circular(w*0.05),
-                                                borderSide: BorderSide(
+                                                borderSide: const BorderSide(
                                                     color: theColors.third
                                                 ),
                                               ),
                                               enabledBorder: OutlineInputBorder(
                                                   borderRadius: BorderRadius.circular(w*0.05),
-                                                  borderSide: BorderSide(
+                                                  borderSide: const BorderSide(
                                                       color: theColors.third
                                                   )
                                               )
@@ -207,13 +207,13 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                                               labelText: "Description",
                                               focusedBorder: OutlineInputBorder(
                                                 borderRadius: BorderRadius.circular(w*0.05),
-                                                borderSide: BorderSide(
+                                                borderSide: const BorderSide(
                                                     color: theColors.third
                                                 ),
                                               ),
                                               enabledBorder: OutlineInputBorder(
                                                   borderRadius: BorderRadius.circular(w*0.05),
-                                                  borderSide: BorderSide(
+                                                  borderSide: const BorderSide(
                                                       color: theColors.third
                                                   )
                                               )
@@ -222,93 +222,90 @@ class _BestSellingState extends ConsumerState<BestSelling> {
                                         SizedBox(height: w*0.01,)
                                       ],
                                     ),
-                                    ElevatedButton(
-                                        onPressed: () {
-                                          addBestSelling();
-                                        }, child: Text("Add")),
+                                  ),
+                                  ElevatedButton(
+                                      onPressed: () {
+                                         addPulses();
+                                      }, child: const Text("Add")),
 
-                                  ],
-                                ),
+                                ],
                               ),
                             ]
                         ),
 
                         ListView(
                             shrinkWrap: true,
-                            physics: BouncingScrollPhysics(),
+                            physics: const BouncingScrollPhysics(),
                             children: [
-                              ref.watch(bestsellingProvider).when(data: (data) {
+                              ref.watch(pulsesprovider).when(data: (data) {
                                 data.sort((a, b) => a.name.compareTo(b.name));
-                                return GridView.builder(
+                                return  GridView.builder(
                                   itemCount: data.length,
-                                  physics: BouncingScrollPhysics(),
+                                  physics: const BouncingScrollPhysics(),
+                                  scrollDirection: Axis.vertical,
                                   shrinkWrap: true,
                                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                      childAspectRatio: 1,
-                                      crossAxisSpacing: w*0.01,
-                                      mainAxisSpacing: w*0.01,
-                                      crossAxisCount: 4),
+                                    crossAxisCount: 3,
+                                    crossAxisSpacing: w * 0.03,
+                                    mainAxisSpacing: w * 0.03,
+                                    childAspectRatio: 1,
+                                  ),
                                   itemBuilder: (context, index) {
                                     return Container(
-                                      height: h*0.8,
-                                      width: w*0.8,
+                                      height: w*0.55,
+                                      width: w*0.35,
+                                      padding: EdgeInsets.all(w*0.03),
+                                      margin: EdgeInsets.all(w*0.03),
                                       decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(w*0.03),
-                                          color: Colors.red
+                                        color: theColors.third.withOpacity(0.2),
+                                        borderRadius: BorderRadius.circular(w * 0.05),
+                                        border: Border.all(width: w * 0.002, color: theColors.third),
                                       ),
-                                      margin: EdgeInsets.all(w*0.02),
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text(data[index].name),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                            children: [
-                                              ElevatedButton(onPressed: () {
-                                                showDialog(
-                                                  context: context,
-                                                  builder: (context) {
-                                                    return AlertDialog(
-                                                      title: Center(
-                                                          child: Text("Item Details",style: TextStyle(
-                                                              fontWeight: FontWeight.w600
-                                                          ),)),
-                                                      actions: [
-                                                        Column(
-                                                          children: [
-                                                            Text(data[index].image),
-                                                            Text("Name: ${data[index].name}"),
-                                                            Text("Email: ${data[index].price}"),
-                                                            Text("Password: ${data[index].qty}"),
-                                                            Text("Location: ${data[index].description}"),
-                                                            Text("ID: ${data[index].id}"),
-                                                          ],
-                                                        )
-                                                      ],
-                                                    );
-                                                  },);
-                                              }, child: Text("View")),
-
-                                              ElevatedButton(onPressed: () {
-                                                FirebaseFirestore.instance.collection("exclusive").doc(data[index].id).delete();
-                                              }, child: Icon(Icons.delete_outline))
-                                            ],
-                                          )
+                                          Text(
+                                            "Name : ${data[index].name}",
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          Text(
+                                            "₹${data[index].price}",
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          Text(
+                                            "Quantity : ${data[index].qty}",
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          Text(
+                                            "Description : ${data[index].description}",
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          ElevatedButton(onPressed: () {
+                                            FirebaseFirestore.instance.collection("pulses").doc(data[index].id).delete();
+                                          }, child: const Icon(CupertinoIcons.delete))
                                         ],
                                       ),
                                     );
                                   },);
-                              },
-                                error:  (error, stackTrace) {
+                              }, error:  (error, stackTrace) {
                                 return Text(error.toString());
                               },
                                 loading:  () {
-                                  return Center(
+                                  return const Center(
                                     child: CircularProgressIndicator(),
                                   );
                                 },),
 
-                              ]
+                            ]
                         )
                       ]),
                 )

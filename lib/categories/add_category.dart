@@ -5,21 +5,21 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nectar_admin/app_administration/categories/app_categories.dart';
 import 'package:nectar_admin/core/common/colors.dart';
 import 'package:nectar_admin/feature/controller/addingController.dart';
 import 'package:nectar_admin/model/addCategory_model.dart';
 
 import '../../main.dart';
+import 'app_categories.dart';
 
-class addCategory extends ConsumerStatefulWidget {
-  const addCategory({super.key});
+class AddCategory extends ConsumerStatefulWidget {
+  const AddCategory({super.key});
 
   @override
-  ConsumerState<addCategory> createState() => _addCategoryState();
+  ConsumerState<AddCategory> createState() => _addCategoryState();
 }
 
-class _addCategoryState extends ConsumerState<addCategory> {
+class _addCategoryState extends ConsumerState<AddCategory> {
 
   TextEditingController categoryController = TextEditingController();
 
@@ -37,7 +37,7 @@ class _addCategoryState extends ConsumerState<addCategory> {
 
     // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text("Uploading...")));
+        .showSnackBar(const SnackBar(content: Text("Uploading...")));
     uploadFileToFireBase(name, fileBytes);
 
     setState(() {});
@@ -81,8 +81,8 @@ class _addCategoryState extends ConsumerState<addCategory> {
           onTap: () {
             Navigator.pop(context);
           },
-            child: Icon(Icons.arrow_back,color: theColors.primaryColor,)),
-        title: Text("Add Category",style: TextStyle(
+            child: const Icon(Icons.arrow_back,color: theColors.primaryColor,)),
+        title: const Text("Add Category",style: TextStyle(
           color: theColors.primaryColor,fontWeight: FontWeight.w600
         ),),
       ),
@@ -129,13 +129,13 @@ class _addCategoryState extends ConsumerState<addCategory> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(w*0.05),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: theColors.third
                     ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(w*0.05),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: theColors.third
                     )
                   )
@@ -158,11 +158,11 @@ class _addCategoryState extends ConsumerState<addCategory> {
 
                   categoryController.clear();
 
-                }, child: Text("Add")),
+                }, child: const Text("Add")),
 
             ElevatedButton(onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => categories(),));
-            }, child: Text("Go To Page")),
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const Categories(),));
+            }, child: const Text("Go To Page")),
 
           ],
         ),
