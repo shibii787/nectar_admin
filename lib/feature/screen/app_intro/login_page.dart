@@ -5,7 +5,7 @@ import 'package:nectar_admin/core/common/colors.dart';
 import 'package:nectar_admin/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../main.dart';
+import '../../../main.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

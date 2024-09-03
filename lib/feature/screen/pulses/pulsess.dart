@@ -10,7 +10,9 @@ import 'package:nectar_admin/core/common/colors.dart';
 import 'package:nectar_admin/feature/controller/addingController.dart';
 import 'package:nectar_admin/model/pulses_model.dart';
 
-import '../../main.dart';
+import '../../../main.dart';
+
+
 
 class Pulses extends ConsumerStatefulWidget {
   const Pulses({super.key});

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:nectar_admin/home_page.dart';
 import 'package:nectar_admin/settings_page.dart';
-import 'package:nectar_admin/app_intro/splash.dart';
 import 'package:nectar_admin/core/common/colors.dart';
-import 'package:nectar_admin/users/admin_user_page.dart';
-import 'package:nectar_admin/users/app_users.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'banner.dart';
+import 'feature/screen/app_intro/splash.dart';
+import 'feature/screen/users/admin_user_page.dart';
+import 'feature/screen/users/app_users.dart';
 
 class homewithSidebar extends StatefulWidget {
   const homewithSidebar({super.key});

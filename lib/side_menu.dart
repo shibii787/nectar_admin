@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nectar_admin/core/common/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'app_intro/splash.dart';
+import 'feature/screen/app_intro/splash.dart';
 import 'main.dart';
 
 class SideMenu extends StatefulWidget {

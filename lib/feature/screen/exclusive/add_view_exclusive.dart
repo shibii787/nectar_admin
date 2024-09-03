@@ -9,7 +9,7 @@ import 'package:nectar_admin/core/common/colors.dart';
 import 'package:nectar_admin/feature/controller/addingController.dart';
 import 'package:nectar_admin/model/exclusive_model.dart';
 
-import '../../main.dart';
+import '../../../main.dart';
 
 class AddViewExclusivePage extends ConsumerStatefulWidget {
   const AddViewExclusivePage({super.key});

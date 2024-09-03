@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nectar_admin/core/common/colors.dart';
 
-import '../../feature/controller/addingController.dart';
-import '../../main.dart';
-import '../../model/adminModel.dart';
+import '../../../main.dart';
+import '../../../model/adminModel.dart';
+import '../../controller/addingController.dart';
+
 
 class AdminUsers extends ConsumerStatefulWidget {
   const AdminUsers({super.key});

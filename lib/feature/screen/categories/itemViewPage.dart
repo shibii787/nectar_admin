@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nectar_admin/core/common/colors.dart';
 
-import '../../main.dart';
+import '../../../main.dart';
 
 class ItemViewPage extends ConsumerStatefulWidget {
   final String title;

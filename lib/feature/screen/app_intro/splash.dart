@@ -3,7 +3,7 @@ import 'package:nectar_admin/home.dart';
 import 'package:nectar_admin/core/common/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../main.dart';
+import '../../../main.dart';
 import 'login_page.dart';
 
 class SplashPage extends StatefulWidget {

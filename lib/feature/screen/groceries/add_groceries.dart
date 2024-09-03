@@ -8,8 +8,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nectar_admin/core/common/colors.dart';
 import 'package:nectar_admin/feature/controller/addingController.dart';
 
-import '../../main.dart';
-import '../../model/grocery_model.dart';
+import '../../../main.dart';
+import '../../../model/grocery_model.dart';
+
 
 class AddGroceries extends ConsumerStatefulWidget {
   const AddGroceries({super.key});

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:nectar_admin/appView.dart';
 import 'package:nectar_admin/core/common/colors.dart';
-import 'package:nectar_admin/pulses/pulsess.dart';
-import '../main.dart';
-import 'best_selling/add_bestSelling.dart';
-import 'categories/add_category.dart';
-import 'exclusive/add_view_exclusive.dart';
-import 'groceries/add_groceries.dart';
+
+import 'feature/screen/best_selling/add_bestSelling.dart';
+import 'feature/screen/categories/add_category.dart';
+import 'feature/screen/exclusive/add_view_exclusive.dart';
+import 'feature/screen/groceries/add_groceries.dart';
+import 'feature/screen/pulses/pulsess.dart';
+import 'main.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

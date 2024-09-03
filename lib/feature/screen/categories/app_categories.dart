@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nectar_admin/core/common/colors.dart';
 import 'package:nectar_admin/feature/controller/addingController.dart';
 
-import '../../main.dart';
+import '../../../main.dart';
 import 'itemAddPage.dart';
 
 class Categories extends ConsumerStatefulWidget {

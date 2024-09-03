@@ -9,7 +9,7 @@ import 'package:nectar_admin/core/common/colors.dart';
 import 'package:nectar_admin/feature/controller/addingController.dart';
 import 'package:nectar_admin/model/addCategory_model.dart';
 
-import '../../main.dart';
+import '../../../main.dart';
 import 'app_categories.dart';
 
 class AddCategory extends ConsumerStatefulWidget {

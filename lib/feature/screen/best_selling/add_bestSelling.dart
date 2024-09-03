@@ -9,7 +9,8 @@ import 'package:nectar_admin/core/common/colors.dart';
 import 'package:nectar_admin/feature/controller/addingController.dart';
 import 'package:nectar_admin/model/bestSelling_model.dart';
 
-import '../../main.dart';
+import '../../../main.dart';
+
 
 class BestSelling extends ConsumerStatefulWidget {
   const BestSelling({super.key});

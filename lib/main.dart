@@ -2,8 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nectar_admin/app_intro/splash.dart';
-
+import 'feature/screen/app_intro/splash.dart';
 import 'firebase_options.dart';
 
 var h;

@@ -6,8 +6,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nectar_admin/core/common/colors.dart';
 import 'package:nectar_admin/feature/controller/addingController.dart';
 import 'package:nectar_admin/model/category_model.dart';
-import '../../appView.dart';
-import '../../main.dart';
+
+import '../../../appView.dart';
+import '../../../main.dart';
 
 class ItemAddPage extends ConsumerStatefulWidget {
   final String categoryID;
