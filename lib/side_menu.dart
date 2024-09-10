@@ -30,7 +30,12 @@ class _SideMenuState extends State<SideMenu> {
   Widget build(BuildContext context) {
     return Container(
       width: w*0.2,
-      color: theColors.dark,
+      decoration: BoxDecoration(
+          color: theColors.dark,
+          borderRadius: BorderRadius.only(
+          bottomRight: Radius.circular(w*0.02),
+        )
+      ),
       child: ListView(
         controller: tabScroll,
         physics: const BouncingScrollPhysics(),

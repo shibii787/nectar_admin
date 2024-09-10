@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nectar_admin/model/addCategory_model.dart';
 import 'package:nectar_admin/model/adminModel.dart';
@@ -7,7 +8,6 @@ import 'package:nectar_admin/model/exclusive_model.dart';
 import 'package:nectar_admin/model/grocery_model.dart';
 
 import '../../model/pulses_model.dart';
-import '../../model/user_model.dart';
 import '../repository/addingRepository.dart';
 
 
@@ -17,7 +17,9 @@ final addController = Provider((ref) => AddController(addRepository: ref.watch(a
 final adminStreamProvider = StreamProvider((ref) => ref.watch(addController).adminStreamController());
 
 // Provider funtion for users
-final streamdataProvider = StreamProvider((ref) => ref.watch(addController).streamController());
+// final streamdataProvider = StreamProvider((ref) => ref.watch(addController).streamController());
+
+final userStreamProvider = StreamProvider((ref) => ref.watch(addController).streamUsers(),);
 
 // provider function for Add Category
 final addCategoryStreamProvider = StreamProvider((ref) => ref.watch(addController).addCategoryStreamController());
@@ -71,8 +73,12 @@ addGroceriesControll({required GroceryModel groceryModel}){
   }
 
 // A stream to show users
-  Stream<List<UserModel>> streamController(){
-  return _addRepository.stream();
+//   Stream<List<UserModel>> streamController(){
+//   return _addRepository.stream();
+// }
+
+Stream<QuerySnapshot<Object?>> streamUsers(){
+  return _addRepository.streamUsers();
 }
 
 //A stream to grocery list

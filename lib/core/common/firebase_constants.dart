@@ -6,4 +6,5 @@ class FirebaseConstants{
   static const exclusive ="exclusive";
   static const pulses ="pulses";
   static const groceries ="groceries";
+  static const settings ="settings";
 }

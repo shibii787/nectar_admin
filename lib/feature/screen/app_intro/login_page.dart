@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nectar_admin/core/common/colors.dart';
+import 'package:nectar_admin/core/common/firebase_constants.dart';
 import 'package:nectar_admin/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,6 +19,7 @@ class _LoginPageState extends State<LoginPage> {
 
 
   getLoggedIn() async {
+    //print("getLoggedIn");
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool("loggedIn", true);
     setState(() {
@@ -39,6 +41,7 @@ class _LoginPageState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();
 
   toLogIn() async {
+    //print("toLogin");
     if (emailController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text("Please enter your email")));
@@ -51,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
     if(formKey.currentState!.validate()){
 
       var userlist = await FirebaseFirestore.instance
-          .collection('admins')
+          .collection(FirebaseConstants.admins)
           .where('name', isEqualTo: emailController.text)
           .get();
       if (userlist.docs.isNotEmpty) {

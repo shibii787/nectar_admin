@@ -29,8 +29,8 @@ CollectionReference get _categoryItems => _firestore.collection(FirebaseConstant
 // A funtion to add subItem collection
 // CollectionReference get _subItems => _categoryItems.doc().collection("subItems");
 
-//A funtion to add users
-CollectionReference get _stream => _firestore.collection(FirebaseConstants.account);
+//A funtion to stream users
+CollectionReference get _users => _firestore.collection(FirebaseConstants.account);
 
 //A function to add bestSelling
 CollectionReference get _bestsell => _firestore.collection(FirebaseConstants.bestSelling);
@@ -107,8 +107,12 @@ pulsesfunction({required PulsesModel pulsesModel}){
   }
 
 // A stream to show users
-  Stream<List<UserModel>> stream(){
-    return _stream.snapshots().map((event) => event.docs.map((e) => UserModel.fromMap(e.data() as Map<String,dynamic>)).toList());
+//   Stream<List<UserModel>> stream(){
+//     return _users.snapshots().map((event) => event.docs.map((e) => UserModel.fromMap(e.data() as Map<String,dynamic>)).toList());
+// }
+
+Stream<QuerySnapshot<Object?>> streamUsers(){
+  return _users.snapshots();
 }
 
 // A stream to show added categories

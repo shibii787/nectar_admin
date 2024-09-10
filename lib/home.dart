@@ -4,9 +4,8 @@ import 'package:nectar_admin/home_page.dart';
 import 'package:nectar_admin/settings_page.dart';
 import 'package:nectar_admin/side_menu.dart';
 
-import 'feature/screen/users/admin_user_page.dart';
-import 'feature/screen/users/app_users.dart';
-
+import 'feature/screen/users/screen/admin_user_page.dart';
+import 'feature/screen/users/screen/app_users.dart';
 
 late TabController tabController;
 

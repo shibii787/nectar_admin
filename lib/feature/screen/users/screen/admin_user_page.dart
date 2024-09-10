@@ -1,12 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nectar_admin/core/common/colors.dart';
+import 'package:nectar_admin/core/common/firebase_constants.dart';
+import 'package:nectar_admin/feature/screen/users/controller/auth_controller.dart';
 
-import '../../../main.dart';
-import '../../../model/adminModel.dart';
-import '../../controller/addingController.dart';
+import '../../../../main.dart';
+import '../../../../model/adminModel.dart';
+import '../../../controller/addingController.dart';
+
 
 
 class AdminUsers extends ConsumerStatefulWidget {
@@ -21,38 +23,31 @@ class _AdminUsersState extends ConsumerState<AdminUsers> {
   TextEditingController emailController =TextEditingController();
   TextEditingController passwordController =TextEditingController();
 
-  int setId = 10;
-
-  getLoggedIn() async {
-    FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text);
-
-    setId = setId+1;
-
-    AdminModel adminModel = AdminModel(
+  addAdmin() async {
+    try {
+      AdminModel adminModel = AdminModel(
         name: emailController.text,
         password: passwordController.text,
-        id: setId.toString()
-    );
+        id: ""
+      );
 
-    ref.watch(addController).addAdmins(adminModel: adminModel, docId: setId.toString());
+      await ref.watch(authControlProvider).addAdmin(adminModel: adminModel);
 
-    var adminDetails = await FirebaseFirestore.instance.collection("admins").where(
-        "name",isEqualTo: emailController.text.trim()
-    ).get();
+    } catch (e) {
+      print("Error: $e");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to add admin: $e')),
+      );
+    }
+  }
 
-    adminEmail = adminDetails.docs[0]["name"];
-    adminId = adminDetails.docs[0]["id"];
-    //print("_________________${adminEmail}");
-}
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: theColors.beige,
+        backgroundColor: theColors.primaryColor,
         appBar: AppBar(
           backgroundColor: theColors.third,
           automaticallyImplyLeading: false,
@@ -138,11 +133,9 @@ class _AdminUsersState extends ConsumerState<AdminUsers> {
                                   ),
                                 ),
                                 ElevatedButton(onPressed: () {
-                                  getLoggedIn();
-
+                                  addAdmin();
                                   emailController.clear();
                                   passwordController.clear();
-
                                 }, child: const Text("ADD"))
                               ],
                             ),

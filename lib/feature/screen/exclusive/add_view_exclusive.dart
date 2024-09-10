@@ -80,17 +80,35 @@ class _addViewExclusivePageState extends ConsumerState<AddViewExclusivePage> {
         child: Scaffold(
           backgroundColor: theColors.sixth,
           appBar: AppBar(
+            leading: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+                child: const Icon(Icons.arrow_back,color: Colors.white)),
+            backgroundColor: theColors.third,
+            elevation: 0,
             title: const Text("Exclusive List",style: TextStyle(
-                fontWeight: FontWeight.w600
+              color: Colors.white,
+              fontWeight: FontWeight.w700,
             ),),
-            bottom: const TabBar(tabs: [
-              Tab(
-                text: "Add",
+            bottom: const TabBar(
+              indicatorColor: Colors.white,
+              indicatorWeight: 4.0,
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.black,
+              labelStyle: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
               ),
-              Tab(
-                text: "View",
-              ),
-            ]),
+              tabs: [
+                Tab(
+                  text: "Add",
+                ),
+                Tab(
+                  text: "View",
+                ),
+              ],
+            ),
           ),
           body: Padding(
             padding: EdgeInsets.all(w * 0.03),
